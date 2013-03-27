@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "UnilunchAzure", "UnilunchAzure\UnilunchAzure.ccproj", "{606CEF32-A670-44F3-BD9D-F40554496FA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnilunchService", "UnilunchService\UnilunchService.csproj", "{36764CE5-0F2D-416A-8812-5615113D65DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnilunchScheduledWorker", "UnilunchScheduledWorker\UnilunchScheduledWorker.csproj", "{0139E9FD-A0CE-46F5-9766-808FDF021D4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{606CEF32-A670-44F3-BD9D-F40554496FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{606CEF32-A670-44F3-BD9D-F40554496FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{606CEF32-A670-44F3-BD9D-F40554496FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{606CEF32-A670-44F3-BD9D-F40554496FA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36764CE5-0F2D-416A-8812-5615113D65DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36764CE5-0F2D-416A-8812-5615113D65DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36764CE5-0F2D-416A-8812-5615113D65DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36764CE5-0F2D-416A-8812-5615113D65DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0139E9FD-A0CE-46F5-9766-808FDF021D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0139E9FD-A0CE-46F5-9766-808FDF021D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0139E9FD-A0CE-46F5-9766-808FDF021D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0139E9FD-A0CE-46F5-9766-808FDF021D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
