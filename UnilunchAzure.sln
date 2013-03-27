@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "UnilunchAzure", "UnilunchAzure\UnilunchAzure.ccproj", "{606CEF32-A670-44F3-BD9D-F40554496FA3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnilunchService", "UnilunchService\UnilunchService.csproj", "{36764CE5-0F2D-416A-8812-5615113D65DD}"
