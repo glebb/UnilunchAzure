@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <PublishProfile Include="Profiles\bodhiTestServiceProduction.azurePubxml" />
+    <PublishProfile Include="Profiles\displayofpatienceProduction.azurePubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UnilunchScheduledWorker\UnilunchScheduledWorker.csproj">

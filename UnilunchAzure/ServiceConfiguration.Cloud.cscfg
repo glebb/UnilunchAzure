@@ -3,13 +3,13 @@
   <Role name="UnilunchService">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=displayofpatience;AccountKey=ub6WgC8zc2NJBqO2AQlFWKztpeou7RgakHR9+lx3ODMZ7MncGEvOlxfbVdSGvasgvm7BILBjIJ59Kn2AcbA8cQ==" />
     </ConfigurationSettings>
   </Role>
   <Role name="UnilunchScheduledWorker">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=displayofpatience;AccountKey=ub6WgC8zc2NJBqO2AQlFWKztpeou7RgakHR9+lx3ODMZ7MncGEvOlxfbVdSGvasgvm7BILBjIJ59Kn2AcbA8cQ==" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
