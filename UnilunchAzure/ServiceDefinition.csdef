@@ -14,6 +14,8 @@
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
+    <LocalResources>
+    </LocalResources>
   </WebRole>
   <WorkerRole name="UnilunchScheduledWorker" vmsize="Small">
     <Imports>
