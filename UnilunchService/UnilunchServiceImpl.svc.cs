@@ -20,10 +20,10 @@ namespace UnilunchService
             detail.address.city = "JyvÃ¤skylÃ¤";
             detail.contact.phone_number = "040 8054012";
             detail.contact.email = "lozzi@sonaatti.fi";
-            detail.contact.website = new Uri("http://www.sonaatti.fi/alvari");
+            detail.contact.website = "http://www.sonaatti.fi/alvari";
             detail.dates.Add(new MenuDate
             {
-                date = new DateTime(2013, 3, 28),
+                date = "20130328"
             });
             detail.dates[0].lunch_hours.start_time = "11:00";
             detail.dates[0].lunch_hours.end_time = "12:30";
