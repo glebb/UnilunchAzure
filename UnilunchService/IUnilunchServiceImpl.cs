@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using System.ServiceModel.Web;
+using UnilunchData;
 
 namespace UnilunchService
 {
@@ -12,6 +13,6 @@ namespace UnilunchService
             RequestFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "unilunch/restaurants")]
-        RestaurantModel JsonData();
+        RestaurantJsonContainer JsonData();
     }
 }
