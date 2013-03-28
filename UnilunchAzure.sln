@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnilunchService", "Unilunch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnilunchScheduledWorker", "UnilunchScheduledWorker\UnilunchScheduledWorker.csproj", "{0139E9FD-A0CE-46F5-9766-808FDF021D4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnilunchService.Tests", "UnilunchService.Tests\UnilunchService.Tests.csproj", "{06D9FEA0-77BC-4930-BA2D-5EE826C278EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{0139E9FD-A0CE-46F5-9766-808FDF021D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0139E9FD-A0CE-46F5-9766-808FDF021D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0139E9FD-A0CE-46F5-9766-808FDF021D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06D9FEA0-77BC-4930-BA2D-5EE826C278EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06D9FEA0-77BC-4930-BA2D-5EE826C278EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06D9FEA0-77BC-4930-BA2D-5EE826C278EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06D9FEA0-77BC-4930-BA2D-5EE826C278EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

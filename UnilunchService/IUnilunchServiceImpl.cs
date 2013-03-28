@@ -12,6 +12,6 @@ namespace UnilunchService
             RequestFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "unilunch/restaurants")]
-        Restaurant JsonData();
+        RestaurantModel JsonData();
     }
 }

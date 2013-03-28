@@ -3,9 +3,18 @@ namespace UnilunchService
 {
     public class UnilunchServiceImpl : IUnilunchServiceImpl
     {
-        public Restaurant JsonData()
+        public RestaurantModel JsonData()
         {
-            var r = new Restaurant();
+            var r = new RestaurantModel();
+            var detail = new RestaurantDetail();
+            detail.address.city = "Jyväskylä";
+            detail.company = "Sonaatti";
+            detail.contact.email = "blah@blah.com";
+            detail.contact.phone = "+359 1233245345";
+            detail.contact.website = "http://www.jyu.fi";
+            detail.id = 1;
+            detail.name = "Piato";
+            r.restaurant.Add(detail);
             return r;
         }
     }
