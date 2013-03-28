@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
 using System.ServiceModel.Web;
-using System.Collections.Generic;
+
 namespace UnilunchService
 {
     [ServiceContract]
