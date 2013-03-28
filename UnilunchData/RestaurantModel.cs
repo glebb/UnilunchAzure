@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace UnilunchData
 {
@@ -10,6 +11,7 @@ namespace UnilunchData
     /// (with DataContractJsonSerializer for example) produces an object specified in
     /// https://trac.cc.jyu.fi/projects/dotnet/wiki/moba/s2012/specs
     /// </summary>
+    
     public class RestaurantJsonContainer
     {
         public RestaurantJsonContainer()
@@ -29,7 +31,7 @@ namespace UnilunchData
             dates = new List<MenuDate>();
         }
 
-        public int id { get; set; }
+        public string id { get; set; }
         public string name { get; set; }
         public string company { get; set; }
         public Location location { get; set; }
@@ -47,9 +49,9 @@ namespace UnilunchData
 
     public class Contact
     {
-        public string website { get; set; }
         public string phone_number { get; set; }
         public string email { get; set; }
+        public string website { get; set; }
     }
 
     public class OpenHours
@@ -67,15 +69,20 @@ namespace UnilunchData
 
     public class RestaurantMenuItem
     {
+        [DataMember(Order = 1)]
+        public string description { get; set; }
+        [DataMember(Order = 2)]
+        public string student_prize { get; set; }
+        [DataMember(Order = 3)]
+        public string staff_prize { get; set; }
+        [DataMember(Order = 4)]
+        public List<string> diets { get; set; }
+
         public RestaurantMenuItem()
         {
             diets = new List<string>();
         }
-        public string description { get; set; }
-        public string student_price { get; set; }
-        public string staff_price { get; set; }
-        public List<string> diets;
-    
+
     }
 
     public class MenuDate

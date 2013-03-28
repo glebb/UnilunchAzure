@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
 using UnilunchData;
 
@@ -9,10 +10,10 @@ namespace UnilunchService
     {
         [OperationContract]
         [WebInvoke(Method = "GET",
-            ResponseFormat = WebMessageFormat.Json,
-            RequestFormat = WebMessageFormat.Json,
+            //ResponseFormat = WebMessageFormat.Json,
+            //RequestFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "unilunch/restaurants")]
-        RestaurantJsonContainer JsonData();
+        Message JsonData();
     }
 }

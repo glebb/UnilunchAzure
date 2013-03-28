@@ -1,15 +1,21 @@
 ﻿using System;
+using System.ServiceModel.Channels;
+using System.ServiceModel.Web;
+using System.Text;
+using System.Web.Script.Serialization;
 using UnilunchData;
 namespace UnilunchService
 {
+
     public class UnilunchServiceImpl : IUnilunchServiceImpl
     {
-        public RestaurantJsonContainer JsonData()
+
+        public Message JsonData()
         {
             var container = new RestaurantJsonContainer();
             var detail = new RestaurantDetail
             {
-                id = 1,
+                id = "1",
                 name = "Aallokko",
                 company = "Sonaatti",
             };
@@ -32,8 +38,8 @@ namespace UnilunchService
             detail.dates[0].foods.Add(new RestaurantMenuItem
             {
                 description = "Meksikolaista jauhelihakasvisrisottoa",
-                student_price = "",
-                staff_price = "5,60"
+                student_prize = "",
+                staff_prize = "5,60"
             });
             detail.dates[0].foods[0].diets.Add("L");
             detail.dates[0].foods[0].diets.Add("M");
@@ -42,30 +48,33 @@ namespace UnilunchService
             detail.dates[0].foods.Add(new RestaurantMenuItem
             {
                 description = "Kirjolohilasagnettea",
-                student_price = "",
-                staff_price = "5,60"
+                student_prize = "",
+                staff_prize = "5,60"
             });
             detail.dates[0].foods[1].diets.Add("VL");
             detail.dates[0].foods.Add(new RestaurantMenuItem
             {
                 description = "Tomaattivuohenjuustokastiketta",
-                student_price = "",
-                staff_price = "5,60"
+                student_prize = "",
+                staff_prize = "5,60"
             });
             detail.dates[0].foods[2].diets.Add("VH");
             detail.dates[0].foods[2].diets.Add("G");
             detail.dates[0].foods.Add(new RestaurantMenuItem
             {
                 description = "Broilerin rintaleike",
-                student_price = "",
-                staff_price = "5,60"
+                student_prize = "",
+                staff_prize = "8,60"
             });
             detail.dates[0].foods[3].diets.Add("L");
             detail.dates[0].foods[3].diets.Add("G");
             detail.dates[0].foods[3].diets.Add("VH");
 
             container.restaurant.Add(detail);
-            return container;
+            var res = new JavaScriptSerializer().Serialize(container);
+            return WebOperationContext.Current.CreateTextResponse(res,
+                "application/json; charset=utf-8",
+                Encoding.UTF8);
         }
     }
 }
