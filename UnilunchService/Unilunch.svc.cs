@@ -7,7 +7,7 @@ using UnilunchData;
 namespace UnilunchService
 {
 
-    public class UnilunchServiceImpl : IUnilunchServiceImpl
+    public class Unilunch : IUnilunchService
     {
 
         public Message JsonData()

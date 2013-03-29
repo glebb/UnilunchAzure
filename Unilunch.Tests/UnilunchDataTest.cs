@@ -11,22 +11,22 @@ namespace Unilunch.Tests
     public class UnilunchDataTest
     {
         [TestMethod]
-        public void itShouldCreateOnlyMainObjectWithoutData()
+        public void ItShouldCreateOnlyMainObjectWithoutData()
         {
             var container = new RestaurantJsonContainer();
-            MemoryStream stream1 = new MemoryStream();
             var res = new JavaScriptSerializer().Serialize(container);
             Assert.AreEqual("{\"restaurant\":[]}", res);
         }
 
         [TestMethod]
-        public void itShouldCreateCorrectObjectForSingleRestaurantAndSingleDay()
+        public void ItShouldCreateCorrectObjectForSingleRestaurantAndSingleDay()
         {
             var container = new RestaurantJsonContainer();
-            var detail = new RestaurantDetail {
-                 id = "1",
-                 name = "Alvari",
-                 company = "Sonaatti",
+            var detail = new RestaurantDetail
+            {
+                id = "1",
+                name = "Alvari",
+                company = "Sonaatti",
             };
             detail.location.latitude = "62.235411";
             detail.location.longitude = "25.730384";
@@ -44,7 +44,8 @@ namespace Unilunch.Tests
             detail.dates[0].lunch_hours.end_time = "12:30";
             detail.dates[0].open_hours.end_time = "16:00";
             detail.dates[0].open_hours.start_time = "09:00";
-            detail.dates[0].foods.Add(new RestaurantMenuItem { 
+            detail.dates[0].foods.Add(new RestaurantMenuItem
+            {
                 description = "Meksikolaista jauhelihakasvisrisottoa",
                 student_prize = "",
                 staff_prize = "5,60"
@@ -53,7 +54,7 @@ namespace Unilunch.Tests
             detail.dates[0].foods[0].diets.Add("M");
             detail.dates[0].foods[0].diets.Add("G");
             detail.dates[0].foods[0].diets.Add("VH");
-            
+
             detail.dates[0].foods.Add(new RestaurantMenuItem
             {
                 description = "Kirjolohilasagnettea",
@@ -70,7 +71,7 @@ namespace Unilunch.Tests
             });
             detail.dates[0].foods[2].diets.Add("VH");
             detail.dates[0].foods[2].diets.Add("G");
-            
+
             detail.dates[0].foods.Add(new RestaurantMenuItem());
             detail.dates[0].foods[3].description = "Broilerin rintaleike";
             detail.dates[0].foods[3].student_prize = "";
@@ -87,7 +88,7 @@ namespace Unilunch.Tests
         }
 
         [TestMethod]
-        public void itShouldCreateCorrectObjectForManyRestaurantAndSingleDay()
+        public void ItShouldCreateCorrectObjectForManyRestaurantAndSingleDay()
         {
             var container = new RestaurantJsonContainer();
             var detail = new RestaurantDetail

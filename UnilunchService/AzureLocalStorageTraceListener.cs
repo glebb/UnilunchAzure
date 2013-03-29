@@ -8,19 +8,21 @@ namespace UnilunchService
     public class AzureLocalStorageTraceListener : XmlWriterTraceListener
     {
         public AzureLocalStorageTraceListener()
-            : base(Path.Combine(GetLogDirectory().Path, "WCFServiceWebRole1.svclog"))
+            : base(Path.Combine(LogDirectory.Path, "WCFServiceWebRole1.svclog"))
         {
         }
 
-        public static DirectoryConfiguration GetLogDirectory()
+        public static DirectoryConfiguration LogDirectory
         {
-            var directory = new DirectoryConfiguration
-                {
-                    Container = "wad-tracefiles",
-                    DirectoryQuotaInMB = 10,
-                    Path = RoleEnvironment.GetLocalResource("WCFServiceWebRole1.svclog").RootPath
-                };
-            return directory;
+            get {
+                var directory = new DirectoryConfiguration
+                    {
+                        Container = "wad-tracefiles",
+                        DirectoryQuotaInMB = 10,
+                        Path = RoleEnvironment.GetLocalResource("WCFServiceWebRole1.svclog").RootPath
+                    };
+                return directory;
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ namespace UnilunchData
         {
             restaurant = new List<RestaurantDetail>();
         }
-        public List<RestaurantDetail> restaurant { get; set; }
+        public IList<RestaurantDetail> restaurant { get; private set; }
     }
 
     public class RestaurantDetail
@@ -37,7 +37,7 @@ namespace UnilunchData
         public Location location { get; set; }
         public Address address { get; set; }
         public Contact contact { get; set; }
-        public List<MenuDate> dates { get; set; }
+        public IList<MenuDate> dates { get; private set; }
     }
 
     public class Address
@@ -76,7 +76,7 @@ namespace UnilunchData
         [DataMember(Order = 3)]
         public string staff_prize { get; set; }
         [DataMember(Order = 4)]
-        public List<string> diets { get; set; }
+        public IList<string> diets { get; private set; }
 
         public RestaurantMenuItem()
         {
@@ -96,7 +96,7 @@ namespace UnilunchData
         public string date { get; set; }
         public OpenHours open_hours { get; set; }
         public LunchHours lunch_hours { get; set; }
-        public List<RestaurantMenuItem> foods { get; set; }
+        public IList<RestaurantMenuItem> foods { get; private set; }
     }
 
     public class Location

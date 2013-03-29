@@ -65,9 +65,8 @@ namespace Unilunch.Tests
         #endregion
 
         [TestMethod]
-        public void itFindsTodayString()
+        public void ItFindsTodayString()
         {
-            var dom = CQ.Create("");
             var sonaatti = new Sonaatti(mainPage);
             Assert.AreEqual("02.04.2013", sonaatti.TodayDate().ToString("dd.MM.yyyy"));
         }
