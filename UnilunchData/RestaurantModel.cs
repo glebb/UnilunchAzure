@@ -37,7 +37,7 @@ namespace UnilunchData
         public Location location { get; set; }
         public Address address { get; set; }
         public Contact contact { get; set; }
-        public IList<MenuDate> dates { get; private set; }
+        public List<MenuDate> dates { get; private set; }
     }
 
     public class Address
@@ -87,16 +87,30 @@ namespace UnilunchData
 
     public class MenuDate
     {
+        
+        private DateTime _realDate;
+        
         public MenuDate()
         {
             open_hours = new OpenHours();
             lunch_hours = new LunchHours();
             foods = new List<RestaurantMenuItem>();
         }
-        public string date { get; set; }
+        
+        public string date {
+            get { return _realDate.ToString("dd.MM.yyyy"); }
+        }
+
         public OpenHours open_hours { get; set; }
         public LunchHours lunch_hours { get; set; }
         public IList<RestaurantMenuItem> foods { get; private set; }
+
+        public void SetRealDate(DateTime value)
+        {
+            _realDate = value;
+        }
+
+
     }
 
     public class Location

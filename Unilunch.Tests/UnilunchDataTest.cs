@@ -36,10 +36,9 @@ namespace Unilunch.Tests
             detail.contact.phone_number = "040 8054012";
             detail.contact.email = "lozzi@sonaatti.fi";
             detail.contact.website = "http://www.sonaatti.fi/alvari";
-            detail.dates.Add(new MenuDate
-            {
-                date = "28.03.2013"
-            });
+            detail.dates.Add(new MenuDate());
+            detail.dates[0].SetRealDate(new DateTime(2013, 03, 28));
+
             detail.dates[0].lunch_hours.start_time = "11:00";
             detail.dates[0].lunch_hours.end_time = "12:30";
             detail.dates[0].open_hours.end_time = "16:00";

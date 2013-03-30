@@ -9,37 +9,17 @@ using UnilunchData;
 
 namespace Unilunch.Tests
 {
-    /// <summary>
-    /// Summary description for SonaattiTest
-    /// </summary>
     [TestClass]
     public class SonaattiTest
     {
 
-        string mainPage;
+        FakeDataSource source;
         public SonaattiTest()
         {
+            source = new FakeDataSource();
             StreamReader streamReader = new StreamReader("Piato.html");
-            mainPage = streamReader.ReadToEnd();
+            source.Data = streamReader.ReadToEnd();
             streamReader.Close();
-        }
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which providesa
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
         }
 
         #region Additional test attributes
@@ -65,10 +45,19 @@ namespace Unilunch.Tests
         #endregion
 
         [TestMethod]
-        public void ItFindsTodayString()
+        public void ItFindsTheFirstLunchDate()
         {
-            var sonaatti = new Sonaatti(mainPage);
-            Assert.AreEqual("02.04.2013", sonaatti.TodayDate().ToString("dd.MM.yyyy"));
+            var sonaatti = new Sonaatti(source);
+            MenuDate expected = sonaatti.Restaurants[0].dates[0];
+            Assert.AreEqual("03.04.2013", expected.date);
         }
+
+        [TestMethod]
+        public void ItFindsTheFirstMenuItemDescription()
+        {
+            var sonaatti = new Sonaatti(source);
+            Assert.AreEqual("Jauhelihakebakoita", sonaatti.Restaurants[0].dates[0].foods[0].description);
+        }
+
     }
 }
