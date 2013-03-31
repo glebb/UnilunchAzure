@@ -10,8 +10,10 @@ namespace UnilunchData
     public class Sonaatti : IRestaurantPlugin
     {
         IDataSource data;
-
         List<RestaurantDetail> _restaurants;
+
+        public IList<RestaurantDetail> Restaurants { get { return _restaurants; } }
+
         public Sonaatti(IDataSource data)
         {
             if (data == null)
@@ -21,9 +23,10 @@ namespace UnilunchData
             this.data = data;
             
             _restaurants = new List<RestaurantDetail>();
-            createRestaurant("Piato", "62.232037", "25.736421", "http://www.sonaatti.fi/piato");
-        }
 
+            createRestaurant("Piato", "62.232037", "25.736421", "http://www.sonaatti.fi/piato");
+            createRestaurant("Kvarkki", "62.230115", "25.741338", "http://www.sonaatti.fi/kvarkki");
+        }
 
         private void createRestaurant(string name, string latitude, string longitude, string url)
         {
@@ -41,15 +44,5 @@ namespace UnilunchData
             _restaurants.Add(restaurant);
         }
 
-
-
-        public IList<RestaurantDetail> Restaurants
-        {
-            get
-            {
-                return _restaurants;
-            }
-            
-        }
     }
 }

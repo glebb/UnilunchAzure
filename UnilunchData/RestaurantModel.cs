@@ -18,7 +18,7 @@ namespace UnilunchData
         {
             restaurant = new List<RestaurantDetail>();
         }
-        public IList<RestaurantDetail> restaurant { get; private set; }
+        public IList<RestaurantDetail> restaurant { get; set; }
     }
 
     public class RestaurantDetail
@@ -31,6 +31,8 @@ namespace UnilunchData
             dates = new List<MenuDate>();
         }
 
+        private string _category;
+
         public string id { get; set; }
         public string name { get; set; }
         public string company { get; set; }
@@ -38,10 +40,26 @@ namespace UnilunchData
         public Address address { get; set; }
         public Contact contact { get; set; }
         public List<MenuDate> dates { get; private set; }
+
+        public void SetCategory(string category)
+        {
+            _category = category;
+        }
+
+        public string GetCategory()
+        {
+            return _category;
+        }
     }
 
     public class Address
     {
+        public Address()
+        {
+            street_address = "";
+            city = "";
+            postal_code = "";
+        }
         public string street_address { get; set; }
         public string postal_code { get; set; }
         public string city { get; set; }
@@ -49,6 +67,11 @@ namespace UnilunchData
 
     public class Contact
     {
+        public Contact()
+        {
+            phone_number = "";
+            email = "";
+        }
         public string phone_number { get; set; }
         public string email { get; set; }
         public string website { get; set; }
@@ -56,6 +79,11 @@ namespace UnilunchData
 
     public class OpenHours
     {
+        public OpenHours()
+        {
+            start_time = "";
+            end_time = "";
+        }
         public string start_time { get; set; }
         public string end_time { get; set; }
 
@@ -63,6 +91,12 @@ namespace UnilunchData
 
     public class LunchHours
     {
+        public LunchHours()
+        {
+            start_time = "";
+            end_time = "";
+        }
+
         public string start_time { get; set; }
         public string end_time { get; set; }
     }
@@ -81,6 +115,8 @@ namespace UnilunchData
         public RestaurantMenuItem()
         {
             diets = new List<string>();
+            student_prize = "";
+            staff_prize = "";
         }
 
     }

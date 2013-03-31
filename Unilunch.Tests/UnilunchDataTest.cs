@@ -106,7 +106,7 @@ namespace Unilunch.Tests
             };
             container.restaurant.Add(detail2);
             var res = new JavaScriptSerializer().Serialize(container);
-            Assert.AreEqual("{\"restaurant\":[{\"id\":\"1\",\"name\":\"Aallokko\",\"company\":\"Sonaatti\",\"location\":{\"longitude\":null,\"latitude\":null},\"address\":{\"street_address\":null,\"postal_code\":null,\"city\":null},\"contact\":{\"phone_number\":null,\"email\":null,\"website\":null},\"dates\":[]},{\"id\":\"2\",\"name\":\"Piato\",\"company\":\"Sonaatti\",\"location\":{\"longitude\":null,\"latitude\":null},\"address\":{\"street_address\":null,\"postal_code\":null,\"city\":null},\"contact\":{\"phone_number\":null,\"email\":null,\"website\":null},\"dates\":[]}]}", res);
+            Assert.AreEqual("{\"restaurant\":[{\"id\":\"1\",\"name\":\"Aallokko\",\"company\":\"Sonaatti\",\"location\":{\"longitude\":null,\"latitude\":null},\"address\":{\"street_address\":\"\",\"postal_code\":\"\",\"city\":\"\"},\"contact\":{\"phone_number\":\"\",\"email\":\"\",\"website\":null},\"dates\":[]},{\"id\":\"2\",\"name\":\"Piato\",\"company\":\"Sonaatti\",\"location\":{\"longitude\":null,\"latitude\":null},\"address\":{\"street_address\":\"\",\"postal_code\":\"\",\"city\":\"\"},\"contact\":{\"phone_number\":\"\",\"email\":\"\",\"website\":null},\"dates\":[]}]}", res);
         }
     }
 }

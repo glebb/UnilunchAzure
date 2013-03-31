@@ -31,13 +31,20 @@ namespace UnilunchData
             foreach (var rawMenuItem in rawMenuTextAllItems)
             {
                 var menuItem = new RestaurantMenuItem();
-                menuItem.description = rawMenuItem.Split('#').First().Trim();
+                var description = rawMenuItem.Split('#').First().Trim();
+                menuItem.description = cleanDescriptionFromPrice(description);
                 var pattern = "[0-9]+,[0-9]{1,2}";
                 menuItem.student_prize = Regex.Match(rawMenuItem, pattern).ToString();
                 menuItem.staff_prize = Regex.Match(rawMenuItem, pattern, RegexOptions.RightToLeft).ToString();
                 date.foods.Add(menuItem);
             }
             return date;
+        }
+
+        private static string cleanDescriptionFromPrice(string description)
+        {
+            var pattern = @"\([0-9]+,[0-9]{1,2}.*$";
+            return Regex.Replace(description, pattern, "").Trim();
         }
     }
 }

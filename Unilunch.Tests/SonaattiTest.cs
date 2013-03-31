@@ -91,6 +91,33 @@ namespace Unilunch.Tests
             Assert.IsTrue(SonaattiParserHelpers.createMenu(CQ.Create("<html></html>")).Count == 0);
         }
 
+        [TestMethod]
+        public void ItFindsTheFirstLunchDateForSecondRestaurant()
+        {
+            var sonaatti = new Sonaatti(source);
+            MenuDate expected = sonaatti.Restaurants[1].dates[0];
+            Assert.AreEqual("02.04.2013", expected.date);
+        }
 
+        [TestMethod]
+        public void ItFindsTheFirstMenuItemDescriptionForSecondDateForSecondRestaurant()
+        {
+            var sonaatti = new Sonaatti(source);
+            Assert.AreEqual("Broileri-sinihomejuustokastiketta", sonaatti.Restaurants[1].dates[1].foods[0].description);
+        }
+
+        [TestMethod]
+        public void ItFindsTheLastMenuItemDescriptionForLastDateForSecondRestaurant()
+        {
+            var sonaatti = new Sonaatti(source);
+            Assert.AreEqual("Broileria kookoskermakastikkeessa", sonaatti.Restaurants[1].dates.Last().foods.Last().description);
+        }
+
+        [TestMethod]
+        public void ItFinsTheMenuItemWithoutDiets()
+        {
+            var sonaatti = new Sonaatti(source);
+            Assert.AreEqual("Uunik", sonaatti.Restaurants[1].dates.Last().foods[1].description);
+        }
     }
 }
