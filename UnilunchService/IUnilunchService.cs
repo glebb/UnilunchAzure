@@ -10,7 +10,7 @@ namespace UnilunchService
     {
         [OperationContract]
         [WebInvoke(Method = "GET",
-            //ResponseFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
             //RequestFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "restaurants")]
