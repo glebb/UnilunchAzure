@@ -11,12 +11,27 @@ namespace UnilunchService
 
     public class Unilunch : IUnilunchService
     {
+        static DateTime _timestamp;
+        static Sonaatti _sonaatti;
 
+        public Unilunch()
+        {
+        }
         public Message JsonData()
         {
             var container = new RestaurantJsonContainer();
-            var sonaatti = new Sonaatti(new DataSource());
-            container.restaurant = sonaatti.Restaurants;
+            if (_sonaatti == null)
+            {
+                _sonaatti = new Sonaatti(new DataSource());
+                _timestamp = DateTime.Now;
+            }
+            else if ((DateTime.Now - _timestamp).TotalMinutes > 360 )
+            {
+                var temp = (DateTime.Now - _timestamp).TotalMinutes;
+                _sonaatti = new Sonaatti(new DataSource());
+                _timestamp = DateTime.Now;
+            }
+            container.restaurant = _sonaatti.Restaurants;
             var res = JsonConvert.SerializeObject(container);
             return WebOperationContext.Current.CreateTextResponse(res,
                 "application/json; charset=utf-8", Encoding.UTF8);
