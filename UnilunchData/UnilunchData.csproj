@@ -53,7 +53,6 @@
     <Compile Include="RestaurantModel.cs" />
     <Compile Include="Sonaatti.cs" />
     <Compile Include="SonaattiParser.cs" />
-    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

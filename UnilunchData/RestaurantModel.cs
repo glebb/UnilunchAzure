@@ -8,7 +8,8 @@ namespace UnilunchData
     /// <summary>
     /// Container object for Unilunch restaurant data.
     /// Using the object to JSON serialization 
-    /// (with DataContractJsonSerializer for example) produces an object specified in
+    /// (with JavascriptSeralizer or JSON.net serializer) produces an object conforming
+    /// (but not limited to) spec at:
     /// https://trac.cc.jyu.fi/projects/dotnet/wiki/moba/s2012/specs
     /// </summary>
     
@@ -30,7 +31,6 @@ namespace UnilunchData
             contact = new Contact();
             dates = new List<MenuDate>();
         }
-
         public string id { get; set; }
         public string name { get; set; }
         public string company { get; set; }
@@ -38,9 +38,7 @@ namespace UnilunchData
         public Address address { get; set; }
         public Contact contact { get; set; }
         public List<MenuDate> dates { get; private set; }
-
         public string category { get; set; }
-   
     }
 
     public class Address
@@ -77,7 +75,6 @@ namespace UnilunchData
         }
         public string start_time { get; set; }
         public string end_time { get; set; }
-
     }
 
     public class LunchHours
@@ -87,7 +84,6 @@ namespace UnilunchData
             start_time = "";
             end_time = "";
         }
-
         public string start_time { get; set; }
         public string end_time { get; set; }
     }
@@ -109,7 +105,6 @@ namespace UnilunchData
             student_prize = "";
             staff_prize = "";
         }
-
     }
 
     public class MenuDate
@@ -136,8 +131,6 @@ namespace UnilunchData
         {
             _realDate = value;
         }
-
-
     }
 
     public class Location

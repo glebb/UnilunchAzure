@@ -9,43 +9,37 @@ namespace Unilunch.Tests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void TestConstructDateWithEmptyThrowsException()
+        public void ConstructDateWithEmptyThrowsException()
         {
-            Utils.ConstructDateFromSonaattiDate("");
+            SonaattiParser.ConstructDateFromSonaattiDate("");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void TestConstructDateWithNullThrowsException()
+        public void ConstructDateWithNullThrowsException()
         {
-            Utils.ConstructDateFromSonaattiDate(null);
+            SonaattiParser.ConstructDateFromSonaattiDate(null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void TestConstructDateWithWrongDataThrowsException()
+        public void ConstructDateWithWrongDataThrowsException()
         {
-            Utils.ConstructDateFromSonaattiDate("wrong data");
-        }
-
-        [TestMethod]
-        public void TestConstructDateWithCorrectStringReturnsDate()
-        {
-            Utils.ConstructDateFromSonaattiDate("2.6.2014");
+            SonaattiParser.ConstructDateFromSonaattiDate("wrong data");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void TestConstructDateWithNonnumericDataThrowsException()
+        public void ConstructDateWithNonnumericDataThrowsException()
         {
-            Utils.ConstructDateFromSonaattiDate("abc.dfe.xcv");
+            SonaattiParser.ConstructDateFromSonaattiDate("abc.dfe.xcv");
         }
 
         [TestMethod]
-        public void TestConstructDateWithCorrectStringReturnsCorrectDate()
+        public void ConstructDateWithCorrectStringReturnsCorrectDate()
         {
             var expected = new DateTime(2014, 6, 3);
-            Assert.AreEqual(expected.ToShortDateString(), Utils.ConstructDateFromSonaattiDate("3.6.2014").ToShortDateString());
+            Assert.AreEqual(expected.ToShortDateString(), SonaattiParser.ConstructDateFromSonaattiDate("3.6.2014").ToShortDateString());
         }
     }
 }

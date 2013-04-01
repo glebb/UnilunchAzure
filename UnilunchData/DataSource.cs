@@ -13,7 +13,6 @@ namespace UnilunchData
             using (WebClient webClient = new WebClient())
             {
                 webClient.Encoding = Encoding.UTF8;
-                //var contents = new System.Net.WebClient().DownloadString(url);
                 var contents = webClient.DownloadString(url);
                 return contents;
             }

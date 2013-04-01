@@ -11,12 +11,11 @@ namespace Unilunch.Tests
     public class UnilunchDataTest
     {
         [TestMethod]
-        public void ItShouldCreateOnlyMainObjectWithoutData()
+        public void ItShouldCreateEmptyMainObjectWithoutData()
         {
             var container = new RestaurantJsonContainer();
             var res = new JavaScriptSerializer().Serialize(container);
             Assert.AreEqual("{\"restaurant\":[]}", res);
         }
-
     }
 }
