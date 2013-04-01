@@ -97,7 +97,7 @@ namespace UnilunchData
         [DataMember(Order = 3)]
         public string staff_prize { get; set; }
         [DataMember(Order = 4)]
-        public IList<string> diets { get; private set; }
+        public List<string> diets { get; private set; }
 
         public RestaurantMenuItem()
         {

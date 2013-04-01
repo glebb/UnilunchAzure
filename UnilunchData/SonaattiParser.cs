@@ -70,6 +70,8 @@ namespace UnilunchData
                 {
                     var menuItem = new RestaurantMenuItem();
                     menuItem.description = cleanDescriptionFromPrice(food.InnerText);
+                    menuItem.diets.AddRange(diets(food.InnerText));
+
                     menuDate.foods.Add(menuItem);
                 }
             }
@@ -85,10 +87,24 @@ namespace UnilunchData
             {
                 var menuItem = new RestaurantMenuItem();
                 menuItem.description = cleanDescriptionFromPrice(rawMenuItem);
+                menuItem.diets.AddRange(diets(rawMenuItem));
                 setPrices(rawMenuItem, menuItem);
                 date.foods.Add(menuItem);
             }
             return date;
+        }
+
+        public static IList<string> diets(string rawMenuItem)
+        {
+            var res = new List<string>();
+            var pattern = @"#[^\s^\d^#]+[\b]?";
+            var matches = Regex.Matches(rawMenuItem, pattern);
+            foreach (var match in matches)
+            {
+                res.Add(match.ToString().Replace("#", "").Trim());
+            }
+
+            return res;
         }
 
         private static void setPrices(string rawMenuItem, RestaurantMenuItem menuItem)
@@ -98,11 +114,13 @@ namespace UnilunchData
             menuItem.staff_prize = Regex.Match(rawMenuItem, pattern, RegexOptions.RightToLeft).ToString();
         }
 
-        private static string cleanDescriptionFromPrice(string description)
+        public static string cleanDescriptionFromPrice(string description)
         {
-            var temp = description.Split('#').First().Trim();
+            var temp = description.Replace("&#228;", "ä");
+            temp = temp.Replace("&#246;", "ö");
+            temp = temp.Split(new string[] { "#" }, StringSplitOptions.None).First().Trim();
             var pattern = @"\([0-9]+,[0-9]{1,2}.*$";
-            return Regex.Replace(temp, pattern, "").Trim();
+            return Regex.Replace(temp, pattern, "").Replace("()", "").Trim();
         }
 
 

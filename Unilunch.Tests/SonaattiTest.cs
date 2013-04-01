@@ -12,7 +12,7 @@ namespace Unilunch.Tests
     [TestClass]
     public class SonaattiTest
     {
-
+        Sonaatti sonaatti;
         FakeDataSource source;
         public SonaattiTest()
         {
@@ -40,8 +40,11 @@ namespace Unilunch.Tests
         // public static void MyClassCleanup() { }
         //
         // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
+        [TestInitialize()]
+        public void MyTestInitialize() 
+        {
+            sonaatti = new Sonaatti(source);
+        }
         //
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
@@ -52,7 +55,6 @@ namespace Unilunch.Tests
         [TestMethod]
         public void ItFindsTheFirstLunchDate()
         {
-            var sonaatti = new Sonaatti(source);
             MenuDate expected = sonaatti.Restaurants[0].dates[0];
             Assert.AreEqual("02.04.2013", expected.date);
         }
@@ -60,36 +62,30 @@ namespace Unilunch.Tests
         [TestMethod]
         public void ItFindsTheFirstMenuItemDescriptionForFirstDate()
         {
-            var sonaatti = new Sonaatti(source);
             Assert.AreEqual("Naudanliha-smetanakastiketta", sonaatti.Restaurants[0].dates[0].foods[0].description);
         }
 
         [TestMethod]
         public void ItFindsTheSecondMenuItemDescriptionForFirstDate()
         {
-            var sonaatti = new Sonaatti(source);
             Assert.AreEqual("Kalaa katkarapukastikkeessa", sonaatti.Restaurants[0].dates[0].foods[1].description);
         }
 
         [TestMethod]
         public void ItFindsTheStudentPrice()
         {
-            var sonaatti = new Sonaatti(source);
             Assert.AreEqual("2,60", sonaatti.Restaurants[0].dates[1].foods[0].student_prize);
         }
 
         [TestMethod]
         public void ItFindsTheStudentPriceForFirstDayItem()
         {
-            var sonaatti = new Sonaatti(source);
             Assert.AreEqual("2,60", sonaatti.Restaurants[0].dates[0].foods[0].student_prize);
         }
-
 
         [TestMethod]
         public void ItFindsTheStaffPrice()
         {
-            var sonaatti = new Sonaatti(source);
             Assert.AreEqual("8,00", sonaatti.Restaurants[0].dates[1].foods[0].staff_prize);
         }
 
@@ -99,15 +95,13 @@ namespace Unilunch.Tests
             var s = new FakeDataSource();
             s.Data = "<html></html>";
             s.Data2 = "<html></html>";
-            var sonaatti = new Sonaatti(s);
-
-            Assert.IsTrue(sonaatti.Restaurants[0].dates.Count == 0);
+            var sona = new Sonaatti(s);
+            Assert.IsTrue(sona.Restaurants[0].dates.Count == 0);
         }
 
         [TestMethod]
         public void ItFindsTheFirstLunchDateForSecondRestaurant()
         {
-            var sonaatti = new Sonaatti(source);
             MenuDate expected = sonaatti.Restaurants[1].dates[0];
             Assert.AreEqual("01.04.2013", expected.date);
         }
@@ -115,28 +109,24 @@ namespace Unilunch.Tests
         [TestMethod]
         public void ItFindsTheFirstMenuItemDescriptionForSecondDateForSecondRestaurant()
         {
-            var sonaatti = new Sonaatti(source);
             Assert.AreEqual("Nakkikastiketta", sonaatti.Restaurants[1].dates[1].foods[0].description);
         }
 
         [TestMethod]
         public void ItFindsTheLastMenuItemDescriptionForLastDateForSecondRestaurant()
         {
-            var sonaatti = new Sonaatti(source);
             Assert.AreEqual("Broileria kookoskermakastikkeessa", sonaatti.Restaurants[1].dates.Last().foods.Last().description);
         }
 
         [TestMethod]
         public void ItFindsTheMenuItemWithoutDiets()
         {
-            var sonaatti = new Sonaatti(source);
             Assert.AreEqual("Uunik", sonaatti.Restaurants[1].dates.Last().foods[1].description);
         }
         
         [TestMethod]
         public void ItExcludesEmptyDescriptions()
         {
-            var sonaatti = new Sonaatti(source);
             foreach (var food in sonaatti.Restaurants[0].dates[0].foods)
             {
                 Assert.IsTrue(!String.IsNullOrWhiteSpace(food.description));
@@ -146,12 +136,71 @@ namespace Unilunch.Tests
         [TestMethod]
         public void ItSetsPricesForAllFoodsWhenAvailable()
         {
-            var sonaatti = new Sonaatti(source);
             foreach (var food in sonaatti.Restaurants[0].dates[0].foods)
             {
                 Assert.IsTrue(!String.IsNullOrWhiteSpace(food.student_prize));
             }
         }
 
+        [TestMethod]
+        public void ItShouldFindDietsForFood()
+        {
+            Assert.IsTrue(sonaatti.Restaurants[0].dates[0].foods[0].diets.Contains("VH"));
+            Assert.IsTrue(sonaatti.Restaurants[0].dates[0].foods[0].diets.Contains("L"));
+
+        }
+
+        [TestMethod]
+        public void ItShouldStripExtraParenthesisFromDescription()
+        {
+            Assert.AreEqual("salaatti", SonaattiParser.cleanDescriptionFromPrice("salaatti ()"));
+        }
+
+        [TestMethod]
+        public void ItShouldKeepSpecialCharInTheEbd()
+        {
+            Assert.AreEqual("Kalkkuna-rakuunakastiketta ja tummaa riisiä", SonaattiParser.cleanDescriptionFromPrice("Kalkkuna-rakuunakastiketta ja tummaa riisi&#228; #L #G"));
+        }
+
+        [TestMethod]
+        public void ItShouldWorkOnThisSpecialCase()
+        {
+            Assert.AreEqual("L", SonaattiParser.diets("Kalkkuna-rakuunakastiketta ja tummaa riisiä #L #G")[0]);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ConstructDateWithEmptyThrowsException()
+        {
+            SonaattiParser.ConstructDateFromSonaattiDate("");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ConstructDateWithNullThrowsException()
+        {
+            SonaattiParser.ConstructDateFromSonaattiDate(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ConstructDateWithWrongDataThrowsException()
+        {
+            SonaattiParser.ConstructDateFromSonaattiDate("wrong data");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ConstructDateWithNonnumericDataThrowsException()
+        {
+            SonaattiParser.ConstructDateFromSonaattiDate("abc.dfe.xcv");
+        }
+
+        [TestMethod]
+        public void ConstructDateWithCorrectStringReturnsCorrectDate()
+        {
+            var expected = new DateTime(2014, 6, 3);
+            Assert.AreEqual(expected.ToShortDateString(), SonaattiParser.ConstructDateFromSonaattiDate("3.6.2014").ToShortDateString());
+        }
     }
 }
