@@ -54,35 +54,43 @@ namespace Unilunch.Tests
         {
             var sonaatti = new Sonaatti(source);
             MenuDate expected = sonaatti.Restaurants[0].dates[0];
-            Assert.AreEqual("03.04.2013", expected.date);
+            Assert.AreEqual("02.04.2013", expected.date);
         }
 
         [TestMethod]
         public void ItFindsTheFirstMenuItemDescriptionForFirstDate()
         {
             var sonaatti = new Sonaatti(source);
-            Assert.AreEqual("Jauhelihakebakoita", sonaatti.Restaurants[0].dates[0].foods[0].description);
+            Assert.AreEqual("Naudanliha-smetanakastiketta", sonaatti.Restaurants[0].dates[0].foods[0].description);
         }
 
         [TestMethod]
         public void ItFindsTheSecondtMenuItemDescriptionForFirstDate()
         {
             var sonaatti = new Sonaatti(source);
-            Assert.AreEqual("Lohi-kasvispataa", sonaatti.Restaurants[0].dates[0].foods[1].description);
+            Assert.AreEqual("Kalaa katkarapukastikkeessa", sonaatti.Restaurants[0].dates[0].foods[1].description);
         }
 
         [TestMethod]
         public void ItFindsTheStudentPrice()
         {
             var sonaatti = new Sonaatti(source);
+            Assert.AreEqual("2,60", sonaatti.Restaurants[0].dates[1].foods[0].student_prize);
+        }
+
+        [TestMethod]
+        public void ItFindsTheStudentPriceForFirstDayItem()
+        {
+            var sonaatti = new Sonaatti(source);
             Assert.AreEqual("2,60", sonaatti.Restaurants[0].dates[0].foods[0].student_prize);
         }
+
 
         [TestMethod]
         public void ItFindsTheStaffPrice()
         {
             var sonaatti = new Sonaatti(source);
-            Assert.AreEqual("8,00", sonaatti.Restaurants[0].dates[0].foods[0].staff_prize);
+            Assert.AreEqual("8,00", sonaatti.Restaurants[0].dates[1].foods[0].staff_prize);
         }
 
         [TestMethod]
@@ -96,14 +104,14 @@ namespace Unilunch.Tests
         {
             var sonaatti = new Sonaatti(source);
             MenuDate expected = sonaatti.Restaurants[1].dates[0];
-            Assert.AreEqual("02.04.2013", expected.date);
+            Assert.AreEqual("01.04.2013", expected.date);
         }
 
         [TestMethod]
         public void ItFindsTheFirstMenuItemDescriptionForSecondDateForSecondRestaurant()
         {
             var sonaatti = new Sonaatti(source);
-            Assert.AreEqual("Broileri-sinihomejuustokastiketta", sonaatti.Restaurants[1].dates[1].foods[0].description);
+            Assert.AreEqual("Nakkikastiketta", sonaatti.Restaurants[1].dates[1].foods[0].description);
         }
 
         [TestMethod]
@@ -114,10 +122,31 @@ namespace Unilunch.Tests
         }
 
         [TestMethod]
-        public void ItFinsTheMenuItemWithoutDiets()
+        public void ItFindsTheMenuItemWithoutDiets()
         {
             var sonaatti = new Sonaatti(source);
             Assert.AreEqual("Uunik", sonaatti.Restaurants[1].dates.Last().foods[1].description);
         }
+        
+        [TestMethod]
+        public void ItExcludesEmptyDescripitons()
+        {
+            var sonaatti = new Sonaatti(source);
+            foreach (var food in sonaatti.Restaurants[0].dates[0].foods)
+            {
+                Assert.IsTrue(!String.IsNullOrWhiteSpace(food.description));
+            }
+        }
+
+        [TestMethod]
+        public void ItSetsPricesForAllFoodsWhenAvailable()
+        {
+            var sonaatti = new Sonaatti(source);
+            foreach (var food in sonaatti.Restaurants[0].dates[0].foods)
+            {
+                Assert.IsTrue(!String.IsNullOrWhiteSpace(food.student_prize));
+            }
+        }
+
     }
 }
