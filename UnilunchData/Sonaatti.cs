@@ -10,6 +10,7 @@ namespace UnilunchData
     public class Sonaatti : IRestaurantPlugin
     {
         IDataSource data;
+        SonaattiParser parser;
         static int counter = 1;
         List<RestaurantDetail> _restaurants;
 
@@ -22,7 +23,7 @@ namespace UnilunchData
                 throw new ArgumentNullException("data");
             }
             this.data = data;
-            
+            parser = new SonaattiParser();
             _restaurants = new List<RestaurantDetail>();
 
             createRestaurant("Piato", "62.232037", "25.736421", "http://www.sonaatti.fi/piato", "Mattilanniemi 2 (Agora);40100;Jyväskylä", "040 805 4016", "piato@sonaatti.fi");
@@ -44,7 +45,8 @@ namespace UnilunchData
             {
                 id = counter.ToString(),
                 name = name,
-                company = "Sonaatti"
+                company = "Sonaatti",
+                category = "Jyväskylä"
             };
             counter++;
             restaurant.location.latitude = latitude;
@@ -57,7 +59,7 @@ namespace UnilunchData
             restaurant.address.city = address.Split(';')[2];
 
             var dom = CQ.Create(data.Load(new Uri(url)));
-            restaurant.dates.AddRange(SonaattiParserHelpers.createMenu(dom));
+            restaurant.dates.AddRange(parser.CreateMenu(dom));
             _restaurants.Add(restaurant);
         }
 

@@ -27,11 +27,10 @@ namespace UnilunchService
             }
             else if ((DateTime.Now - _timestamp).TotalMinutes > 360 )
             {
-                var temp = (DateTime.Now - _timestamp).TotalMinutes;
                 _sonaatti = new Sonaatti(new DataSource());
                 _timestamp = DateTime.Now;
             }
-            container.restaurant = _sonaatti.Restaurants;
+            container.restaurant.AddRange(_sonaatti.Restaurants);
             var res = JsonConvert.SerializeObject(container);
             return WebOperationContext.Current.CreateTextResponse(res,
                 "application/json; charset=utf-8", Encoding.UTF8);

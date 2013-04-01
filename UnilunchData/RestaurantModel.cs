@@ -18,7 +18,7 @@ namespace UnilunchData
         {
             restaurant = new List<RestaurantDetail>();
         }
-        public IList<RestaurantDetail> restaurant { get; set; }
+        public List<RestaurantDetail> restaurant { get; private set; }
     }
 
     public class RestaurantDetail
@@ -31,8 +31,6 @@ namespace UnilunchData
             dates = new List<MenuDate>();
         }
 
-        private string _category;
-
         public string id { get; set; }
         public string name { get; set; }
         public string company { get; set; }
@@ -41,15 +39,8 @@ namespace UnilunchData
         public Contact contact { get; set; }
         public List<MenuDate> dates { get; private set; }
 
-        public void SetCategory(string category)
-        {
-            _category = category;
-        }
-
-        public string GetCategory()
-        {
-            return _category;
-        }
+        public string category { get; set; }
+   
     }
 
     public class Address

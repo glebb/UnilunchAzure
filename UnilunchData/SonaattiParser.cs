@@ -7,10 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace UnilunchData
 {
-    public static class SonaattiParserHelpers
+    public class SonaattiParser
     {
-        public static List<MenuDate> createMenu(CQ dom)
+        public IList<MenuDate> CreateMenu(CQ dom)
         {
+            if (dom == null)
+            {
+                throw new ArgumentNullException("dom");
+            }
             var menus = new List<MenuDate>();
             handleFirstDay(menus, dom);
             var downconts = dom.Select("#lista > .pari, .odd").Select(".downcont");
@@ -58,7 +62,7 @@ namespace UnilunchData
             }
         }
 
-        public static MenuDate createSingleDayMenu(IDomObject singleDayTexts)
+        private static MenuDate createSingleDayMenu(IDomObject singleDayTexts)
         {
             var date = new MenuDate();
             date.SetRealDate(Utils.ConstructDateFromSonaattiDate(singleDayTexts.Cq().Find("span.paiva").Text()));

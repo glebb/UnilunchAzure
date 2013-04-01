@@ -65,7 +65,7 @@ namespace Unilunch.Tests
         }
 
         [TestMethod]
-        public void ItFindsTheSecondtMenuItemDescriptionForFirstDate()
+        public void ItFindsTheSecondMenuItemDescriptionForFirstDate()
         {
             var sonaatti = new Sonaatti(source);
             Assert.AreEqual("Kalaa katkarapukastikkeessa", sonaatti.Restaurants[0].dates[0].foods[1].description);
@@ -94,9 +94,14 @@ namespace Unilunch.Tests
         }
 
         [TestMethod]
-        public void createMenuReturnsEmptyListWithUnexpectedData()
+        public void ItReturnsEmptyListOfDatesWithUnexpectedData()
         {
-            Assert.IsTrue(SonaattiParserHelpers.createMenu(CQ.Create("<html></html>")).Count == 0);
+            var s = new FakeDataSource();
+            s.Data = "<html></html>";
+            s.Data2 = "<html></html>";
+            var sonaatti = new Sonaatti(s);
+
+            Assert.IsTrue(sonaatti.Restaurants[0].dates.Count == 0);
         }
 
         [TestMethod]
@@ -129,7 +134,7 @@ namespace Unilunch.Tests
         }
         
         [TestMethod]
-        public void ItExcludesEmptyDescripitons()
+        public void ItExcludesEmptyDescriptions()
         {
             var sonaatti = new Sonaatti(source);
             foreach (var food in sonaatti.Restaurants[0].dates[0].foods)
