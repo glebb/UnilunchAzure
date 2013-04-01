@@ -1,0 +1,10 @@
+Refactor tests to test small units (Sonaatti -> SonaattiParser)
+
+Write to db
+ - Entity framework? Code first?
+
+REST API queries (read from db)
+ - filter by name, id, date + date range
+
+Plugin interface
+ - Error reporting (parsing failed, send email, don't add to db?)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -35,7 +36,7 @@ namespace UnilunchData
             try
             {
                 var date = dom.Select("#lista > .paivanlounas > span.paiva").Text().Split(' ').Last();
-                menuDate.SetRealDate(ConstructDateFromSonaattiDate(date));
+                menuDate.SetRealDate(ConstructDateFromSonaattiDate(WebUtility.HtmlDecode(date)));
             }
             catch (ArgumentException)
             {
@@ -96,9 +97,10 @@ namespace UnilunchData
 
         public static IList<string> diets(string rawMenuItem)
         {
+            var temp = WebUtility.HtmlDecode(rawMenuItem);
             var res = new List<string>();
             var pattern = @"#[^\s^\d^#]+[\b]?";
-            var matches = Regex.Matches(rawMenuItem, pattern);
+            var matches = Regex.Matches(temp, pattern);
             foreach (var match in matches)
             {
                 res.Add(match.ToString().Replace("#", "").Trim());
@@ -109,15 +111,15 @@ namespace UnilunchData
 
         private static void setPrices(string rawMenuItem, RestaurantMenuItem menuItem)
         {
+            var temp = WebUtility.HtmlDecode(rawMenuItem);
             var pattern = "[0-9]+,[0-9]{1,2}";
-            menuItem.student_prize = Regex.Match(rawMenuItem, pattern).ToString();
-            menuItem.staff_prize = Regex.Match(rawMenuItem, pattern, RegexOptions.RightToLeft).ToString();
+            menuItem.student_prize = Regex.Match(temp, pattern).ToString();
+            menuItem.staff_prize = Regex.Match(temp, pattern, RegexOptions.RightToLeft).ToString();
         }
 
         public static string cleanDescriptionFromPrice(string description)
         {
-            var temp = description.Replace("&#228;", "ä");
-            temp = temp.Replace("&#246;", "ö");
+            var temp = WebUtility.HtmlDecode(description);
             temp = temp.Split(new string[] { "#" }, StringSplitOptions.None).First().Trim();
             var pattern = @"\([0-9]+,[0-9]{1,2}.*$";
             return Regex.Replace(temp, pattern, "").Replace("()", "").Trim();
@@ -130,17 +132,18 @@ namespace UnilunchData
             {
                 throw new ArgumentException("Null value received");
             }
+            var temp = WebUtility.HtmlDecode(value);
 
-            var dates = value.Split('.');
+            var dates = temp.Split('.');
             if (dates.Length != 3)
             {
-                throw new ArgumentException("Format of parameters is incorrect", value);
+                throw new ArgumentException("Format of parameters is incorrect", temp);
             }
 
             int day, month, year;
             if (!Int32.TryParse(dates[0], out day) || !Int32.TryParse(dates[1], out month) || !Int32.TryParse(dates[2], out year))
             {
-                throw new ArgumentException("Parameter does not contain integer values", value);
+                throw new ArgumentException("Parameter does not contain integer values", temp);
             }
 
             return new DateTime(year, month, day);
