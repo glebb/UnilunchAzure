@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Threading;
-using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
-using Microsoft.WindowsAzure.StorageClient;
 
 namespace WorkerRole1
 {
@@ -23,7 +17,9 @@ namespace WorkerRole1
                 Thread.Sleep(10000);
                 Trace.WriteLine("Working", "Information");
             }
+// ReSharper disable FunctionNeverReturns
         }
+// ReSharper restore FunctionNeverReturns
 
         public override bool OnStart()
         {

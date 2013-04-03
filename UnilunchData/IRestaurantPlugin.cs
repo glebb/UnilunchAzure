@@ -1,5 +1,4 @@
-﻿using System;
-namespace UnilunchData
+﻿namespace UnilunchData
 {
     interface IRestaurantPlugin
     {

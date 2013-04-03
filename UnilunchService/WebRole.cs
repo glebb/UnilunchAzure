@@ -4,6 +4,7 @@ namespace UnilunchService
 {
     public class WebRole : RoleEntryPoint
     {
+// ReSharper disable RedundantOverridenMember
         public override bool OnStart()
         {
             // To enable the AzureLocalStorageTraceListner, uncomment relevent section in the web.config  
@@ -16,5 +17,6 @@ namespace UnilunchService
 
             return base.OnStart();
         }
+// ReSharper restore RedundantOverridenMember
     }
 }

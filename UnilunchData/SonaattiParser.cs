@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace UnilunchData
@@ -18,19 +17,15 @@ namespace UnilunchData
             }
             
             var menus = new List<MenuDate>();
-            handleFirstDay(menus, dom);
+            HandleFirstDay(menus, dom);
             
             var allNormalDays = dom.Select("#lista > .pari, .odd").Select(".downcont");
-            foreach (var singleDayTexts in allNormalDays)
-            {
-                var date = createSingleDayMenu(singleDayTexts);
-                menus.Add(date);
-            }
+            menus.AddRange(allNormalDays.Select(CreateSingleDayMenu));
 
             return menus;
         }
 
-        private static void handleFirstDay(List<MenuDate> menus, CQ dom)
+        public static void HandleFirstDay(List<MenuDate> menus, CQ dom)
         {
             var menuDate = new MenuDate();
             try
@@ -44,84 +39,77 @@ namespace UnilunchData
                 return;
             }
 
-            foodsForFirstDate(dom, menuDate);
-            pricesForFirstDate(dom, menuDate);
+            FoodsForFirstDate(dom, menuDate);
+            PricesForFirstDate(dom, menuDate);
 
             menus.Add(menuDate);
         }
 
-        private static void pricesForFirstDate(CQ dom, MenuDate menuDate)
+        public static void PricesForFirstDate(CQ dom, MenuDate menuDate)
         {
-            var prices = dom.Select("#lista > .listapaikka > .hinnat").Html().Split(new string[] { "<br>" }, StringSplitOptions.None).Where(s => !String.IsNullOrWhiteSpace(s)).ToList();
+            var prices = dom.Select("#lista > .listapaikka > .hinnat").Html().Split(new[] { "<br>" }, StringSplitOptions.None).Where(s => !String.IsNullOrWhiteSpace(s)).ToList();
             if (prices.Count() == menuDate.foods.Count())
             {
                 for (int i = 0; i < menuDate.foods.Count(); i++)
                 {
-                    setPrices(prices[i], menuDate.foods[i]);
+                    SetPrices(prices[i], menuDate.foods[i]);
                 }
             }
         }
 
-        private static void foodsForFirstDate(CQ dom, MenuDate menuDate)
+        private static void FoodsForFirstDate(CQ dom, MenuDate menuDate)
         {
             var foods = dom.Select("#lista > .listapaikka > .ruuat p");
             foreach (var food in foods)
             {
                 if (!String.IsNullOrWhiteSpace(food.InnerText))
                 {
-                    var menuItem = new RestaurantMenuItem();
-                    menuItem.description = cleanDescriptionFromPrice(food.InnerText);
-                    menuItem.diets.AddRange(diets(food.InnerText));
+                    var menuItem = new RestaurantMenuItem {description = CleanDescriptionFromPrice(food.InnerText)};
+                    menuItem.diets.AddRange(Diets(food.InnerText));
 
                     menuDate.foods.Add(menuItem);
                 }
             }
         }
 
-        private static MenuDate createSingleDayMenu(IDomObject singleDayTexts)
+        private static MenuDate CreateSingleDayMenu(IDomObject singleDayTexts)
         {
             var date = new MenuDate();
             date.SetRealDate(ConstructDateFromSonaattiDate(singleDayTexts.Cq().Find("span.paiva").Text()));
 
-            var rawMenuTextAllItems = singleDayTexts.Cq().Find("p").Text().ToString().Split(new string[] { ")," }, StringSplitOptions.None);
+            var rawMenuTextAllItems = singleDayTexts.Cq().Find("p").Text().Split(new[] { ")," }, StringSplitOptions.None);
             foreach (var rawMenuItem in rawMenuTextAllItems)
             {
-                var menuItem = new RestaurantMenuItem();
-                menuItem.description = cleanDescriptionFromPrice(rawMenuItem);
-                menuItem.diets.AddRange(diets(rawMenuItem));
-                setPrices(rawMenuItem, menuItem);
+                var menuItem = new RestaurantMenuItem {description = CleanDescriptionFromPrice(rawMenuItem)};
+                menuItem.diets.AddRange(Diets(rawMenuItem));
+                SetPrices(rawMenuItem, menuItem);
                 date.foods.Add(menuItem);
             }
             return date;
         }
 
-        public static IList<string> diets(string rawMenuItem)
+        public static IList<string> Diets(string rawMenuItem)
         {
             var temp = WebUtility.HtmlDecode(rawMenuItem);
-            var res = new List<string>();
-            var pattern = @"#[^\s^\d^#]+[\b]?";
+            const string pattern = @"#[^\s^\d^#]+[\b]?";
             var matches = Regex.Matches(temp, pattern);
-            foreach (var match in matches)
-            {
-                res.Add(match.ToString().Replace("#", "").Trim());
-            }
 
-            return res;
+            return (from object match in matches select match.ToString().Replace("#", "").Trim()).ToList();
         }
 
-        private static void setPrices(string rawMenuItem, RestaurantMenuItem menuItem)
+        private static void SetPrices(string rawMenuItem, RestaurantMenuItem menuItem)
         {
             var temp = WebUtility.HtmlDecode(rawMenuItem);
-            var pattern = "[0-9]+,[0-9]{1,2}";
+            const string pattern = "[0-9]+,[0-9]{1,2}";
             menuItem.student_prize = Regex.Match(temp, pattern).ToString();
             menuItem.staff_prize = Regex.Match(temp, pattern, RegexOptions.RightToLeft).ToString();
         }
 
-        public static string cleanDescriptionFromPrice(string description)
+        public static string CleanDescriptionFromPrice(string description)
         {
             var temp = WebUtility.HtmlDecode(description);
-            temp = temp.Split(new string[] { "#" }, StringSplitOptions.None).First().Trim();
-            var pattern = @"\([0-9]+,[0-9]{1,2}.*$";
+            temp = temp.Split(new[] { "#" }, StringSplitOptions.None).First().Trim();
+            const string pattern = @"\([0-9]+,[0-9]{1,2}.*$";
             return Regex.Replace(temp, pattern, "").Replace("()", "").Trim();
         }
 

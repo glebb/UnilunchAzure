@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 
 namespace UnilunchData
 {
+    // ReSharper disable InconsistentNaming
 
     /// <summary>
     /// Container object for Unilunch restaurant data.
@@ -138,4 +139,7 @@ namespace UnilunchData
         public string longitude { get; set; }
         public string latitude { get; set; }
     }
+
+    // ReSharper restore InconsistentNaming
+
 }

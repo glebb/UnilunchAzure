@@ -1,10 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics;
+using Newtonsoft.Json;
 using System;
-using System.IO;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
 using System.Text;
-using System.Web.Script.Serialization;
 using UnilunchData;
 namespace UnilunchService
 {
@@ -14,9 +13,6 @@ namespace UnilunchService
         static DateTime _timestamp;
         static Sonaatti _sonaatti;
 
-        public Unilunch()
-        {
-        }
         public Message JsonData()
         {
             var container = new RestaurantJsonContainer();
@@ -32,6 +28,7 @@ namespace UnilunchService
             }
             container.restaurant.AddRange(_sonaatti.Restaurants);
             var res = JsonConvert.SerializeObject(container);
+            Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
             return WebOperationContext.Current.CreateTextResponse(res,
                 "application/json; charset=utf-8", Encoding.UTF8);
         }

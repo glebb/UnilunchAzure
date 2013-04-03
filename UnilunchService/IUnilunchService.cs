@@ -1,7 +1,6 @@
 ﻿using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
-using UnilunchData;
 
 namespace UnilunchService
 {

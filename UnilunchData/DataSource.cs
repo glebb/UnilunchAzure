@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Text;
 
@@ -10,7 +8,7 @@ namespace UnilunchData
     {
         public string Load(Uri url)
         {
-            using (WebClient webClient = new WebClient())
+            using (var webClient = new WebClient())
             {
                 webClient.Encoding = Encoding.UTF8;
                 var contents = webClient.DownloadString(url);

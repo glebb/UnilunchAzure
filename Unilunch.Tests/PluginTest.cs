@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnilunchData;
-using System.Collections.Generic;
 
 namespace Unilunch.Tests
 {
@@ -13,7 +12,9 @@ namespace Unilunch.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void ItShouldThrowExceptionWhenInitializedWithNull()
         {
+// ReSharper disable ObjectCreationAsStatement
             new Sonaatti(null);
+// ReSharper restore ObjectCreationAsStatement
         }
 
     }
