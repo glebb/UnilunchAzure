@@ -39,7 +39,7 @@ namespace UnilunchData
         {
             var restaurant = new RestaurantDetail
                 {
-                id = _counter.ToString(CultureInfo.InvariantCulture),
+                RestaurantDetailId = _counter,
                 name = name,
                 company = "Sonaatti",
                 category = "Jyväskylä"

@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace UnilunchData
 {
     // ReSharper disable InconsistentNaming
+    // ReSharper disable UnusedAutoPropertyAccessor.Global
+    // ReSharper disable MemberCanBePrivate.Global
+    // ReSharper disable UnusedMember.Global
 
     /// <summary>
     /// Container object for Unilunch restaurant data.
@@ -32,7 +38,16 @@ namespace UnilunchData
             contact = new Contact();
             dates = new List<MenuDate>();
         }
-        public string id { get; set; }
+        
+        public int RestaurantDetailId { get; set; }
+
+        public bool ShouldSerializeRestaurantDetailId()
+        {
+            return false;
+        }
+
+        [NotMapped]
+        public string id { get { return RestaurantDetailId.ToString(CultureInfo.InvariantCulture); } }
         public string name { get; set; }
         public string company { get; set; }
         public Location location { get; set; }
@@ -50,6 +65,12 @@ namespace UnilunchData
             city = "";
             postal_code = "";
         }
+        public int AddressId { get; set; }
+        public bool ShouldSerializeAddressDetail()
+        {
+            return false;
+        }
+
         public string street_address { get; set; }
         public string postal_code { get; set; }
         public string city { get; set; }
@@ -62,6 +83,14 @@ namespace UnilunchData
             phone_number = "";
             email = "";
         }
+
+        public int ContactId { get; set; }
+        public bool ShouldSerializeContactId()
+        {
+            return false;
+        }
+
+
         public string phone_number { get; set; }
         public string email { get; set; }
         public string website { get; set; }
@@ -71,26 +100,103 @@ namespace UnilunchData
     {
         public OpenHours()
         {
-            start_time = "";
-            end_time = "";
         }
-        public string start_time { get; set; }
-        public string end_time { get; set; }
+
+        public DateTime RealStart { get; set; }
+        public bool ShouldSerializeRealStart()
+        {
+            return false;
+        }
+
+        public DateTime RealEnd { get; set; }
+        public bool ShouldSerializeRealEnd()
+        {
+            return false;
+        }
+
+
+        [NotMapped]
+        public string start_time
+        {
+            get
+            {
+                if (RealStart == DateTime.MinValue) return "";
+                return RealStart.ToString("hh:mm");
+            }
+        }
+        [NotMapped]
+        public string end_time
+        {
+            get
+            {
+                if (RealEnd == DateTime.MinValue) return "";
+                return RealEnd.ToString("hh:mm");
+            }
+        }
+
+        public int OpenHoursId { get; set; }
+        public bool ShouldSerializeOpenHoursId()
+        {
+            return false;
+        }
+
     }
 
     public class LunchHours
     {
         public LunchHours()
         {
-            start_time = "";
-            end_time = "";
         }
-        public string start_time { get; set; }
-        public string end_time { get; set; }
+
+        public int LunchHoursId { get; set; }
+        public bool ShouldSerializeLunchHoursId()
+        {
+            return false;
+        }
+
+        public DateTime RealStart { get; set; }
+        public bool ShouldSerializeRealStart()
+        {
+            return false;
+        }
+
+        public DateTime RealEnd { get; set; }
+        public bool ShouldSerializeRealEnd()
+        {
+            return false;
+        }
+
+
+        [NotMapped]
+        public string start_time
+        {
+            get
+            {
+                if (RealStart == DateTime.MinValue) return "";
+                return RealStart.ToString("hh:mm");
+            }
+        }
+        [NotMapped]
+        public string end_time
+        {
+            get
+            {
+                if (RealEnd == DateTime.MinValue) return "";
+                return RealEnd.ToString("hh:mm");
+            }
+        }
     }
 
+// ReSharper disable ClassWithVirtualMembersNeverInherited.Global
     public class RestaurantMenuItem
+// ReSharper restore ClassWithVirtualMembersNeverInherited.Global
     {
+        public int RestaurantMenuItemId { get; set; }
+        public bool ShouldSerializeRestaurantMenuItemId()
+        {
+            return false;
+        }
+
         [DataMember(Order = 1)]
         public string description { get; set; }
         [DataMember(Order = 2)]
@@ -106,12 +212,34 @@ namespace UnilunchData
             student_prize = "";
             staff_prize = "";
         }
+
+        public int MenuDateId { get; set; }
+        public bool ShouldSerializeMenuDateId()
+        {
+            return false;
+        }
+
+        public virtual MenuDate MenuDate { get; set; }
+        public bool ShouldSerializeMenuDate()
+        {
+            return false;
+        }
     }
 
     public class MenuDate
     {
-        
-        private DateTime _realDate;
+
+        public int MenuDateId { get; set; }
+        public bool ShouldSerializeMenuDateId()
+        {
+            return false;
+        }
+
+        public DateTime RealDate { get; set; }
+        public bool ShouldSerializeRealDate()
+        {
+            return false;
+        }
         
         public MenuDate()
         {
@@ -119,9 +247,10 @@ namespace UnilunchData
             lunch_hours = new LunchHours();
             foods = new List<RestaurantMenuItem>();
         }
-        
+
+        [NotMapped]
         public string date {
-            get { return _realDate.ToString("dd.MM.yyyy"); }
+            get { return RealDate.ToString("dd.MM.yyyy"); }
         }
 
         public OpenHours open_hours { get; set; }
@@ -130,16 +259,36 @@ namespace UnilunchData
 
         public void SetRealDate(DateTime value)
         {
-            _realDate = value;
+            RealDate = value;
         }
     }
 
     public class Location
     {
+        public int LocationId { get; set; }
+        public bool ShouldSerializeLocationlId()
+        {
+            return false;
+        }
+
+        
         public string longitude { get; set; }
         public string latitude { get; set; }
     }
 
+
+
+    public class UnilunchContext : DbContext
+    {
+        public DbSet<RestaurantDetail> Restaurants { get; set; }
+        public DbSet<RestaurantMenuItem> Menus { get; set; }
+        public DbSet<MenuDate> MenuDates { get; set; }
+    }
+
     // ReSharper restore InconsistentNaming
+    // ReSharper restore UnusedAutoPropertyAccessor.Global
+    // ReSharper restore MemberCanBePrivate.Global
+    // ReSharper restore UnusedMember.Global
+
 
 }
