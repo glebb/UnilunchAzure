@@ -53,7 +53,7 @@ namespace UnilunchData
         public Location location { get; set; }
         public Address address { get; set; }
         public Contact contact { get; set; }
-        public List<MenuDate> dates { get; private set; }
+        public virtual List<MenuDate> dates { get; private set; }
         public string category { get; set; }
     }
 
@@ -98,10 +98,6 @@ namespace UnilunchData
 
     public class OpenHours
     {
-        public OpenHours()
-        {
-        }
-
         public DateTime? RealStart { get; set; }
         public bool ShouldSerializeRealStart()
         {
@@ -129,7 +125,7 @@ namespace UnilunchData
         {
             get
             {
-                if (RealEnd == DateTime.MinValue) return "";
+                if (RealEnd == null) return "";
                 return RealEnd.Value.ToString("hh:mm");
             }
         }
@@ -144,9 +140,6 @@ namespace UnilunchData
 
     public class LunchHours
     {
-        public LunchHours()
-        {
-        }
 
         public int LunchHoursId { get; set; }
         public bool ShouldSerializeLunchHoursId()
@@ -255,7 +248,7 @@ namespace UnilunchData
 
         public OpenHours open_hours { get; set; }
         public LunchHours lunch_hours { get; set; }
-        public IList<RestaurantMenuItem> foods { get; private set; }
+        public virtual IList<RestaurantMenuItem> foods { get; private set; }
 
         public void SetRealDate(DateTime value)
         {
