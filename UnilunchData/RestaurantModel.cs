@@ -102,13 +102,13 @@ namespace UnilunchData
         {
         }
 
-        public DateTime RealStart { get; set; }
+        public DateTime? RealStart { get; set; }
         public bool ShouldSerializeRealStart()
         {
             return false;
         }
 
-        public DateTime RealEnd { get; set; }
+        public DateTime? RealEnd { get; set; }
         public bool ShouldSerializeRealEnd()
         {
             return false;
@@ -120,8 +120,8 @@ namespace UnilunchData
         {
             get
             {
-                if (RealStart == DateTime.MinValue) return "";
-                return RealStart.ToString("hh:mm");
+                if (RealStart == null) return "";
+                return RealStart.Value.ToString("hh:mm");
             }
         }
         [NotMapped]
@@ -130,7 +130,7 @@ namespace UnilunchData
             get
             {
                 if (RealEnd == DateTime.MinValue) return "";
-                return RealEnd.ToString("hh:mm");
+                return RealEnd.Value.ToString("hh:mm");
             }
         }
 
@@ -154,13 +154,13 @@ namespace UnilunchData
             return false;
         }
 
-        public DateTime RealStart { get; set; }
+        public DateTime? RealStart { get; set; }
         public bool ShouldSerializeRealStart()
         {
             return false;
         }
 
-        public DateTime RealEnd { get; set; }
+        public DateTime? RealEnd { get; set; }
         public bool ShouldSerializeRealEnd()
         {
             return false;
@@ -172,8 +172,8 @@ namespace UnilunchData
         {
             get
             {
-                if (RealStart == DateTime.MinValue) return "";
-                return RealStart.ToString("hh:mm");
+                if (RealStart == null) return "";
+                return RealStart.Value.ToString("hh:mm");
             }
         }
         [NotMapped]
@@ -181,8 +181,8 @@ namespace UnilunchData
         {
             get
             {
-                if (RealEnd == DateTime.MinValue) return "";
-                return RealEnd.ToString("hh:mm");
+                if (RealEnd == null) return "";
+                return RealEnd.Value.ToString("hh:mm");
             }
         }
     }
