@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.Data.Entity;
+using System.Diagnostics;
+using System.Linq;
 using Newtonsoft.Json;
 using System;
 using System.ServiceModel.Channels;
@@ -26,8 +28,42 @@ namespace UnilunchService
                 _sonaatti = new Sonaatti(new DataSource());
                 _timestamp = DateTime.Now;
             }
-            container.restaurant.AddRange(_sonaatti.Restaurants);
-            var res = JsonConvert.SerializeObject(container);
+
+            //Database.SetInitializer(new DropCreateDatabaseAlways<UnilunchContext>());
+            string res;
+
+            using (var context = new UnilunchContext())
+            {
+                foreach (var r in _sonaatti.Restaurants)
+                {
+                    if (!context.Restaurants.Any(e => e.name == r.name))
+                    {
+                        context.Restaurants.Add(r);
+                    }
+                    else
+                    {
+                        var id = from result in context.Restaurants
+                                 where result.name == r.name
+                                 select result.RestaurantDetailId;
+                        foreach (var date in r.dates)
+                        {
+                            if (!context.MenuDates.Any(e => e.RealDate == date.RealDate))
+                            {
+                                context.MenuDates.Add(date);
+                            }
+                        }
+                    }
+                }
+                context.SaveChanges();
+
+                var query = from r in context.Restaurants select r;
+                container.restaurant.AddRange(query);
+                res = JsonConvert.SerializeObject(container);
+            }
+
+
+            //container.restaurant.AddRange(_sonaatti.Restaurants);
+
             Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
             return WebOperationContext.Current.CreateTextResponse(res,
                 "application/json; charset=utf-8", Encoding.UTF8);

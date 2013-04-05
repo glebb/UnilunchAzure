@@ -52,11 +52,7 @@ namespace DBApp
                     Console.WriteLine(item.dates.Count.ToString());
 
                 }
-
             }
-
-
-
         }
     }
 }
