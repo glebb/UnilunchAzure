@@ -40,7 +40,6 @@ namespace UnilunchData
         }
         
         public int RestaurantDetailId { get; set; }
-
         public bool ShouldSerializeRestaurantDetailId()
         {
             return false;
@@ -53,10 +52,11 @@ namespace UnilunchData
         public Location location { get; set; }
         public Address address { get; set; }
         public Contact contact { get; set; }
-        public virtual List<MenuDate> dates { get; private set; }
+        public List<MenuDate> dates { get; private set; }
         public string category { get; set; }
     }
 
+    [ComplexType]
     public class Address
     {
         public Address()
@@ -65,17 +65,12 @@ namespace UnilunchData
             city = "";
             postal_code = "";
         }
-        public int AddressId { get; set; }
-        public bool ShouldSerializeAddressDetail()
-        {
-            return false;
-        }
-
         public string street_address { get; set; }
         public string postal_code { get; set; }
         public string city { get; set; }
     }
 
+    [ComplexType]
     public class Contact
     {
         public Contact()
@@ -83,19 +78,12 @@ namespace UnilunchData
             phone_number = "";
             email = "";
         }
-
-        public int ContactId { get; set; }
-        public bool ShouldSerializeContactId()
-        {
-            return false;
-        }
-
-
         public string phone_number { get; set; }
         public string email { get; set; }
         public string website { get; set; }
     }
 
+    [ComplexType]
     public class OpenHours
     {
         public DateTime? RealStart { get; set; }
@@ -138,9 +126,9 @@ namespace UnilunchData
 
     }
 
+    [ComplexType]
     public class LunchHours
     {
-
         public int LunchHoursId { get; set; }
         public bool ShouldSerializeLunchHoursId()
         {
@@ -158,7 +146,6 @@ namespace UnilunchData
         {
             return false;
         }
-
 
         [NotMapped]
         public string start_time
@@ -221,7 +208,6 @@ namespace UnilunchData
 
     public class MenuDate
     {
-
         public int MenuDateId { get; set; }
         public bool ShouldSerializeMenuDateId()
         {
@@ -254,22 +240,27 @@ namespace UnilunchData
         {
             RealDate = value;
         }
-    }
 
-    public class Location
-    {
-        public int LocationId { get; set; }
-        public bool ShouldSerializeLocationlId()
+        public int RestaurantDetailId { get; set; }
+        public bool ShouldSerializeRestaurantDetailId()
         {
             return false;
         }
 
-        
+        public virtual RestaurantDetail RestaurantDetail { get; set; }
+        public bool ShouldSerializeRestaurantDetail()
+        {
+            return false;
+        }
+
+    }
+
+    [ComplexType]
+    public class Location
+    {
         public string longitude { get; set; }
         public string latitude { get; set; }
     }
-
-
 
     public class UnilunchContext : DbContext
     {
