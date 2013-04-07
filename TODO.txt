@@ -1,8 +1,7 @@
 Refactor tests to test small units (Sonaatti -> SonaattiParser)
 
 REST API queries (read from db)
- - filter by name, id, date + date range
- - into separate classes, tests for input
+ - filter by name, id
 
 Publish as web site
  - create schedule task script for update

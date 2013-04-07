@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Globalization;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 #endregion
 
@@ -45,12 +46,8 @@ namespace UnilunchData
             dates = new List<MenuDate>();
         }
 
+        [JsonIgnore]
         public int RestaurantDetailId { get; set; }
-
-        public bool ShouldSerializeRestaurantDetailId()
-        {
-            return false;
-        }
 
         [NotMapped]
         public string id
@@ -99,20 +96,10 @@ namespace UnilunchData
     [ComplexType]
     public class OpenHours
     {
+        [JsonIgnore]
         public DateTime? RealStart { get; set; }
-
-        public bool ShouldSerializeRealStart()
-        {
-            return false;
-        }
-
+        [JsonIgnore]
         public DateTime? RealEnd { get; set; }
-
-        public bool ShouldSerializeRealEnd()
-        {
-            return false;
-        }
-
 
         [NotMapped]
         public string start_time
@@ -134,38 +121,19 @@ namespace UnilunchData
             }
         }
 
+        [JsonIgnore]
         public int OpenHoursId { get; set; }
-
-        public bool ShouldSerializeOpenHoursId()
-        {
-            return false;
-        }
     }
 
     [ComplexType]
     public class LunchHours
     {
+        [JsonIgnore]
         public int LunchHoursId { get; set; }
-
-        public bool ShouldSerializeLunchHoursId()
-        {
-            return false;
-        }
-
+        [JsonIgnore]
         public DateTime? RealStart { get; set; }
-
-        public bool ShouldSerializeRealStart()
-        {
-            return false;
-        }
-
+        [JsonIgnore]
         public DateTime? RealEnd { get; set; }
-
-        public bool ShouldSerializeRealEnd()
-        {
-            return false;
-        }
-
         [NotMapped]
         public string start_time
         {
@@ -189,12 +157,8 @@ namespace UnilunchData
 
     public class RestaurantMenuItem
     {
+        [JsonIgnore]
         public int RestaurantMenuItemId { get; set; }
-
-        public bool ShouldSerializeRestaurantMenuItemId()
-        {
-            return false;
-        }
 
         [DataMember(Order = 1)]
         public string description { get; set; }
@@ -215,37 +179,18 @@ namespace UnilunchData
             staff_prize = "";
         }
 
+        [JsonIgnore]
         public int MenuDateId { get; set; }
-
-        public bool ShouldSerializeMenuDateId()
-        {
-            return false;
-        }
-
+        [JsonIgnore]
         public virtual MenuDate MenuDate { get; set; }
-
-        public bool ShouldSerializeMenuDate()
-        {
-            return false;
-        }
     }
 
     public class MenuDate
     {
+        [JsonIgnore]
         public int MenuDateId { get; set; }
-
-        public bool ShouldSerializeMenuDateId()
-        {
-            return false;
-        }
-
+        [JsonIgnore]
         public DateTime RealDate { get; set; }
-
-        public bool ShouldSerializeRealDate()
-        {
-            return false;
-        }
-
         public MenuDate()
         {
             open_hours = new OpenHours();
@@ -268,19 +213,11 @@ namespace UnilunchData
             RealDate = value;
         }
 
+        [JsonIgnore]
         public int RestaurantDetailId { get; set; }
 
-        public bool ShouldSerializeRestaurantDetailId()
-        {
-            return false;
-        }
-
+        [JsonIgnore]
         public virtual RestaurantDetail RestaurantDetail { get; set; }
-
-        public bool ShouldSerializeRestaurantDetail()
-        {
-            return false;
-        }
     }
 
     [ComplexType]
