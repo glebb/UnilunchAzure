@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System.IO;
+using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
 
@@ -13,7 +14,7 @@ namespace UnilunchService
             RequestFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "restaurants?date={date}")]
-        Message JsonData(string date);
+        Stream FetchData(string date);
 
         [OperationContract]
         [WebInvoke(Method = "GET",
@@ -21,7 +22,7 @@ namespace UnilunchService
             RequestFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "updatedb")]
-        Message UpdateDatabase();
+        Stream UpdateDatabase();
 
         [OperationContract]
         [WebInvoke(Method = "GET",
@@ -29,7 +30,7 @@ namespace UnilunchService
             RequestFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "restaurantsAll")]
-        Message AllData();
+        Stream AllData();
 
     }
 }

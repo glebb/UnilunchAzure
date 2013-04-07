@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Data.Objects;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using DBApp;
 using Newtonsoft.Json;
 using System;
 using System.ServiceModel.Channels;
@@ -17,7 +17,7 @@ namespace UnilunchService
         static DateTime _timestamp;
         static Sonaatti _sonaatti;
 
-        public Message UpdateDatabase()
+        public Stream UpdateDatabase()
         {
             if (_sonaatti == null)
             {
@@ -34,13 +34,11 @@ namespace UnilunchService
 
             using (var context = new UnilunchContext())
                 DbHandler.SaveToDb(_sonaatti, context);
-            const string responseText = "OK";
-            var res = JsonConvert.SerializeObject(responseText);
-            Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
-            return WebOperationContext.Current.CreateTextResponse(res, "application/json; charset=utf-8", Encoding.UTF8);
+            var res = JsonConvert.SerializeObject("OK");
+            return CreateJsonResponse(res);
         }
 
-        public Message JsonData(string date)
+        public Stream FetchData(string date)
         {
             var userDate = !String.IsNullOrEmpty(date) ? DateTime.ParseExact(date, "ddMMyyyy", null) : DateTime.Today;
             var container = new RestaurantJsonContainer();
@@ -59,13 +57,20 @@ namespace UnilunchService
                 container.restaurant.AddRange(result.Select(a => a.RestauraurantDetail).ToList());
                 res = JsonConvert.SerializeObject(container);
             }
-
-            Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
-            return WebOperationContext.Current.CreateTextResponse(res,
-                "application/json; charset=utf-8", Encoding.UTF8);
+            return CreateJsonResponse(res);
         }
 
-        public Message AllData()
+        private static Stream CreateJsonResponse(string res)
+        {
+            Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
+            WebOperationContext.Current.OutgoingResponse.ContentType =
+               "application/json; charset=utf-8";
+            return new MemoryStream(Encoding.UTF8.GetBytes(res));
+            //return WebOperationContext.Current.CreateTextResponse(res,
+            //                                                      "application/json; charset=utf-8", Encoding.UTF8);
+        }
+
+        public Stream AllData()
         {
             var container = new RestaurantJsonContainer();
             string res;
@@ -74,9 +79,7 @@ namespace UnilunchService
                 container.restaurant.AddRange(context.Restaurants.Include(r=>r.dates));
                 res = JsonConvert.SerializeObject(container);
             }
-            Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
-            return WebOperationContext.Current.CreateTextResponse(res,
-                "application/json; charset=utf-8", Encoding.UTF8);
+            return CreateJsonResponse(res);
         }
 
     }

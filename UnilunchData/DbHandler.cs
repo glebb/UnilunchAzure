@@ -1,7 +1,6 @@
 ﻿using System.Linq;
-using UnilunchData;
 
-namespace DBApp
+namespace UnilunchData
 {
     public static class DbHandler
     {
