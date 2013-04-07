@@ -84,6 +84,10 @@ namespace UnilunchService
             {
                 SetDefaultDateValues(out userDate, out userDate2);
             }
+            else
+            {
+                userDate2 = userDate2.AddDays(1);
+            }
         }
 
         private static void SetDefaultDateValues(out DateTime userDate, out DateTime userDate2)

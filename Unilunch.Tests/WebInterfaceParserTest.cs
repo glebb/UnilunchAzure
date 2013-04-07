@@ -48,7 +48,7 @@ namespace Unilunch.Tests
         {
             var range = WebInterfaceParser.ResolveDateRange("23042013-01052013");
             Assert.AreEqual(new DateTime(2013, 4, 23), range.Start);
-            Assert.AreEqual(new DateTime(2013, 5, 1), range.End);
+            Assert.AreEqual(new DateTime(2013, 5, 2), range.End);
         }
 
         [TestMethod]

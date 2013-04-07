@@ -2,7 +2,6 @@
 
 using System;
 using System.Data.Entity;
-using System.Data.Objects;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -57,8 +56,8 @@ namespace UnilunchService
                                             dates =
                                                      r.dates.Where(
                                                          d =>
-                                                         EntityFunctions.TruncateTime(d.RealDate) ==
-                                                         dateRange.Start.Date)
+                                                         d.RealDate >= dateRange.Start
+                                                         && d.RealDate < dateRange.End)
                                         })
                                     .ToList();
                 container.restaurant.AddRange(result.Select(a => a.RestauraurantDetail).ToList());
