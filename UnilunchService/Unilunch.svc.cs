@@ -39,18 +39,18 @@ namespace UnilunchService
 
         public Stream FetchData(string date)
         {
-            var userDate = !String.IsNullOrEmpty(date) ? DateTime.ParseExact(date, "ddMMyyyy", null) : DateTime.Today;
+            var dateRange = WebInterfaceParser.ResolveDateRange(date);
             var container = new RestaurantJsonContainer();
             string res;
             using (var context = new UnilunchContext())
             {
                 var result = context.MenuDates
-                    .Where(d => EntityFunctions.TruncateTime(d.RealDate) == userDate.Date)
+                    .Where(d => d.RealDate >= dateRange.Start && d.RealDate < dateRange.End)
                     .Select(d=>d.RestaurantDetail)
                     .Select(r => new
                     {
                         RestauraurantDetail = r,
-                        dates = r.dates.Where(d => EntityFunctions.TruncateTime(d.RealDate) == userDate.Date)
+                        dates = r.dates.Where(d => EntityFunctions.TruncateTime(d.RealDate) == dateRange.Start.Date)
                     })
                     .ToList();
                 container.restaurant.AddRange(result.Select(a => a.RestauraurantDetail).ToList());

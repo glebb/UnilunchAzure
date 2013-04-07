@@ -95,6 +95,7 @@
     <Compile Include="Unilunch.svc.cs">
       <DependentUpon>Unilunch.svc</DependentUpon>
     </Compile>
+    <Compile Include="WebInterfaceParser.cs" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup />

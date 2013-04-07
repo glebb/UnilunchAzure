@@ -66,11 +66,16 @@
     <Compile Include="UnilunchDataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PluginTest.cs" />
+    <Compile Include="WebInterfaceParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UnilunchData\UnilunchData.csproj">
       <Project>{6509621e-ce3f-47e1-9449-e5f88001e574}</Project>
       <Name>UnilunchData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UnilunchService\UnilunchService.csproj">
+      <Project>{36764CE5-0F2D-416A-8812-5615113D65DD}</Project>
+      <Name>UnilunchService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
