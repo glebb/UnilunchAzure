@@ -17,9 +17,4 @@
     <LocalResources>
     </LocalResources>
   </WebRole>
-  <WorkerRole name="UnilunchScheduledWorker" vmsize="Small">
-    <Imports>
-      <Import moduleName="Diagnostics" />
-    </Imports>
-  </WorkerRole>
 </ServiceDefinition>

@@ -39,18 +39,9 @@
     <Folder Include="Profiles" />
   </ItemGroup>
   <ItemGroup>
-    <PublishProfile Include="Profiles\bodhiTestServiceProduction.azurePubxml" />
     <PublishProfile Include="Profiles\displayofpatienceProduction.azurePubxml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UnilunchScheduledWorker\UnilunchScheduledWorker.csproj">
-      <Name>UnilunchScheduledWorker</Name>
-      <Project>{0139e9fd-a0ce-46f5-9766-808fdf021d4c}</Project>
-      <Private>True</Private>
-      <RoleType>Worker</RoleType>
-      <RoleName>UnilunchScheduledWorker</RoleName>
-      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
-    </ProjectReference>
     <ProjectReference Include="..\UnilunchService\UnilunchService.csproj">
       <Name>UnilunchService</Name>
       <Project>{36764ce5-0f2d-416a-8812-5615113d65dd}</Project>

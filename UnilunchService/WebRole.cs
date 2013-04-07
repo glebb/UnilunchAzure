@@ -2,7 +2,9 @@ using Microsoft.WindowsAzure.ServiceRuntime;
 
 namespace UnilunchService
 {
+// ReSharper disable UnusedMember.Global
     public class WebRole : RoleEntryPoint
+// ReSharper restore UnusedMember.Global
     {
 // ReSharper disable RedundantOverridenMember
         public override bool OnStart()

@@ -5,14 +5,16 @@ using Microsoft.WindowsAzure.ServiceRuntime;
 
 namespace UnilunchService
 {
+// ReSharper disable UnusedMember.Global
     public class AzureLocalStorageTraceListener : XmlWriterTraceListener
+// ReSharper restore UnusedMember.Global
     {
         public AzureLocalStorageTraceListener()
             : base(Path.Combine(LogDirectory.Path, "WCFServiceWebRole1.svclog"))
         {
         }
 
-        public static DirectoryConfiguration LogDirectory
+        private static DirectoryConfiguration LogDirectory
         {
             get {
                 var directory = new DirectoryConfiguration

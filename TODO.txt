@@ -2,6 +2,17 @@ Refactor tests to test small units (Sonaatti -> SonaattiParser)
 
 REST API queries (read from db)
  - filter by name, id, date + date range
+ - into separate classes, tests for input
+
+Publish as web site
+ - create schedule task script for update
+
+Insert or update when saving to DB
+
+Imlement db cleanup (delete days older than x)
+ - execute at the same time as update?
 
 Plugin interface
  - Error reporting (parsing failed, send email, don't add to db?)
+
+Ilokivi parser

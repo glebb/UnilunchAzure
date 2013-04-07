@@ -1,11 +1,10 @@
-﻿using System.Globalization;
-using CsQuery;
+﻿using CsQuery;
 using System;
 using System.Collections.Generic;
 
 namespace UnilunchData
 {
-    public class Sonaatti : IRestaurantPlugin
+    public class Sonaatti
     {
         readonly IDataSource _data;
         static int _counter = 1;

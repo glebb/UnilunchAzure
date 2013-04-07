@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using System;
-using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
 using System.Text;
 using UnilunchData;
@@ -66,8 +65,6 @@ namespace UnilunchService
             WebOperationContext.Current.OutgoingResponse.ContentType =
                "application/json; charset=utf-8";
             return new MemoryStream(Encoding.UTF8.GetBytes(res));
-            //return WebOperationContext.Current.CreateTextResponse(res,
-            //                                                      "application/json; charset=utf-8", Encoding.UTF8);
         }
 
         public Stream AllData()

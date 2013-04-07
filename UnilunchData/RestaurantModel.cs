@@ -11,6 +11,9 @@ namespace UnilunchData
     // ReSharper disable UnusedAutoPropertyAccessor.Global
     // ReSharper disable MemberCanBePrivate.Global
     // ReSharper disable UnusedMember.Global
+    // ReSharper disable ClassWithVirtualMembersNeverInherited.Global
+
+
 
     /// <summary>
     /// Container object for Unilunch restaurant data.
@@ -167,9 +170,7 @@ namespace UnilunchData
         }
     }
 
-// ReSharper disable ClassWithVirtualMembersNeverInherited.Global
     public class RestaurantMenuItem
-// ReSharper restore ClassWithVirtualMembersNeverInherited.Global
     {
         public int RestaurantMenuItemId { get; set; }
         public bool ShouldSerializeRestaurantMenuItemId()
@@ -273,6 +274,7 @@ namespace UnilunchData
     // ReSharper restore UnusedAutoPropertyAccessor.Global
     // ReSharper restore MemberCanBePrivate.Global
     // ReSharper restore UnusedMember.Global
+    // ReSharper restore ClassWithVirtualMembersNeverInherited.Global
 
 
 }

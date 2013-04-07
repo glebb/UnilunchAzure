@@ -9,7 +9,7 @@ namespace UnilunchData
 {
     public static class SonaattiParser
     {
-        public static IList<MenuDate> CreateMenu(CQ dom)
+        public static IEnumerable<MenuDate> CreateMenu(CQ dom)
         {
             if (dom == null)
             {
@@ -25,7 +25,7 @@ namespace UnilunchData
             return menus;
         }
 
-        public static void HandleFirstDay(List<MenuDate> menus, CQ dom)
+        private static void HandleFirstDay(List<MenuDate> menus, CQ dom)
         {
             var menuDate = new MenuDate();
             try
@@ -45,7 +45,7 @@ namespace UnilunchData
             menus.Add(menuDate);
         }
 
-        public static void PricesForFirstDate(CQ dom, MenuDate menuDate)
+        private static void PricesForFirstDate(CQ dom, MenuDate menuDate)
         {
             var prices = dom.Select("#lista > .listapaikka > .hinnat").Html().Split(new[] { "<br>" }, StringSplitOptions.None).Where(s => !String.IsNullOrWhiteSpace(s)).ToList();
             if (prices.Count() == menuDate.foods.Count())
