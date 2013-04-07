@@ -71,7 +71,7 @@ namespace UnilunchService
             string res;
             using (var context = new UnilunchContext())
             {
-                container.restaurant.AddRange(context.Restaurants);
+                container.restaurant.AddRange(context.Restaurants.Include(r=>r.dates));
                 res = JsonConvert.SerializeObject(container);
             }
             Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
