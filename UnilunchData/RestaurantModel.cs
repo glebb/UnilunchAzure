@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region using directives
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Globalization;
 using System.Runtime.Serialization;
+
+#endregion
 
 namespace UnilunchData
 {
@@ -14,21 +18,20 @@ namespace UnilunchData
     // ReSharper disable ClassWithVirtualMembersNeverInherited.Global
 
 
-
     /// <summary>
-    /// Container object for Unilunch restaurant data.
-    /// Using the object to JSON serialization 
-    /// (with JavascriptSeralizer or JSON.net serializer) produces an object conforming
-    /// (but not limited to) spec at:
-    /// https://trac.cc.jyu.fi/projects/dotnet/wiki/moba/s2012/specs
+    ///     Container object for Unilunch restaurant data.
+    ///     Using the object to JSON serialization
+    ///     (with JavascriptSeralizer or JSON.net serializer) produces an object conforming
+    ///     (but not limited to) spec at:
+    ///     https://trac.cc.jyu.fi/projects/dotnet/wiki/moba/s2012/specs
     /// </summary>
-    
     public class RestaurantJsonContainer
     {
         public RestaurantJsonContainer()
         {
             restaurant = new List<RestaurantDetail>();
         }
+
         public List<RestaurantDetail> restaurant { get; private set; }
     }
 
@@ -41,15 +44,20 @@ namespace UnilunchData
             contact = new Contact();
             dates = new List<MenuDate>();
         }
-        
+
         public int RestaurantDetailId { get; set; }
+
         public bool ShouldSerializeRestaurantDetailId()
         {
             return false;
         }
 
         [NotMapped]
-        public string id { get { return RestaurantDetailId.ToString(CultureInfo.InvariantCulture); } }
+        public string id
+        {
+            get { return RestaurantDetailId.ToString(CultureInfo.InvariantCulture); }
+        }
+
         public string name { get; set; }
         public string company { get; set; }
         public Location location { get; set; }
@@ -68,6 +76,7 @@ namespace UnilunchData
             city = "";
             postal_code = "";
         }
+
         public string street_address { get; set; }
         public string postal_code { get; set; }
         public string city { get; set; }
@@ -81,6 +90,7 @@ namespace UnilunchData
             phone_number = "";
             email = "";
         }
+
         public string phone_number { get; set; }
         public string email { get; set; }
         public string website { get; set; }
@@ -90,12 +100,14 @@ namespace UnilunchData
     public class OpenHours
     {
         public DateTime? RealStart { get; set; }
+
         public bool ShouldSerializeRealStart()
         {
             return false;
         }
 
         public DateTime? RealEnd { get; set; }
+
         public bool ShouldSerializeRealEnd()
         {
             return false;
@@ -111,6 +123,7 @@ namespace UnilunchData
                 return RealStart.Value.ToString("hh:mm");
             }
         }
+
         [NotMapped]
         public string end_time
         {
@@ -122,29 +135,32 @@ namespace UnilunchData
         }
 
         public int OpenHoursId { get; set; }
+
         public bool ShouldSerializeOpenHoursId()
         {
             return false;
         }
-
     }
 
     [ComplexType]
     public class LunchHours
     {
         public int LunchHoursId { get; set; }
+
         public bool ShouldSerializeLunchHoursId()
         {
             return false;
         }
 
         public DateTime? RealStart { get; set; }
+
         public bool ShouldSerializeRealStart()
         {
             return false;
         }
 
         public DateTime? RealEnd { get; set; }
+
         public bool ShouldSerializeRealEnd()
         {
             return false;
@@ -159,6 +175,7 @@ namespace UnilunchData
                 return RealStart.Value.ToString("hh:mm");
             }
         }
+
         [NotMapped]
         public string end_time
         {
@@ -173,6 +190,7 @@ namespace UnilunchData
     public class RestaurantMenuItem
     {
         public int RestaurantMenuItemId { get; set; }
+
         public bool ShouldSerializeRestaurantMenuItemId()
         {
             return false;
@@ -180,10 +198,13 @@ namespace UnilunchData
 
         [DataMember(Order = 1)]
         public string description { get; set; }
+
         [DataMember(Order = 2)]
         public string student_prize { get; set; }
+
         [DataMember(Order = 3)]
         public string staff_prize { get; set; }
+
         [DataMember(Order = 4)]
         public List<string> diets { get; private set; }
 
@@ -195,12 +216,14 @@ namespace UnilunchData
         }
 
         public int MenuDateId { get; set; }
+
         public bool ShouldSerializeMenuDateId()
         {
             return false;
         }
 
         public virtual MenuDate MenuDate { get; set; }
+
         public bool ShouldSerializeMenuDate()
         {
             return false;
@@ -210,17 +233,19 @@ namespace UnilunchData
     public class MenuDate
     {
         public int MenuDateId { get; set; }
+
         public bool ShouldSerializeMenuDateId()
         {
             return false;
         }
 
         public DateTime RealDate { get; set; }
+
         public bool ShouldSerializeRealDate()
         {
             return false;
         }
-        
+
         public MenuDate()
         {
             open_hours = new OpenHours();
@@ -229,7 +254,8 @@ namespace UnilunchData
         }
 
         [NotMapped]
-        public string date {
+        public string date
+        {
             get { return RealDate.ToString("dd.MM.yyyy"); }
         }
 
@@ -243,17 +269,18 @@ namespace UnilunchData
         }
 
         public int RestaurantDetailId { get; set; }
+
         public bool ShouldSerializeRestaurantDetailId()
         {
             return false;
         }
 
         public virtual RestaurantDetail RestaurantDetail { get; set; }
+
         public bool ShouldSerializeRestaurantDetail()
         {
             return false;
         }
-
     }
 
     [ComplexType]
@@ -275,6 +302,4 @@ namespace UnilunchData
     // ReSharper restore MemberCanBePrivate.Global
     // ReSharper restore UnusedMember.Global
     // ReSharper restore ClassWithVirtualMembersNeverInherited.Global
-
-
 }

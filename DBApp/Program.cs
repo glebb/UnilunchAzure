@@ -1,13 +1,17 @@
-﻿using System;
+﻿#region using directives
+
+using System;
 using System.Data.Entity;
 using Newtonsoft.Json;
 using UnilunchData;
 
+#endregion
+
 namespace DBApp
 {
-    static class Program
+    internal static class Program
     {
-        static void Main()
+        private static void Main()
         {
             var source = new DataSource();
             var sonaatti = new Sonaatti(source);

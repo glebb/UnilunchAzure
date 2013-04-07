@@ -1,6 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UnilunchData;
+﻿#region using directives
+
 using System.Web.Script.Serialization;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using UnilunchData;
+
+#endregion
 
 namespace Unilunch.Tests
 {

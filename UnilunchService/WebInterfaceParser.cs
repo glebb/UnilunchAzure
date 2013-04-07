@@ -1,5 +1,9 @@
+#region using directives
+
 using System;
 using System.Globalization;
+
+#endregion
 
 namespace UnilunchService
 {
@@ -7,7 +11,6 @@ namespace UnilunchService
     {
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-
     }
 
     public static class WebInterfaceParser
@@ -63,7 +66,7 @@ namespace UnilunchService
             {
                 try
                 {
-                    int days = Int32.Parse(value.Split(new[] {"plus"}, StringSplitOptions.None)[1]);
+                    var days = Int32.Parse(value.Split(new[] {"plus"}, StringSplitOptions.None)[1]);
                     userDate2 = userDate.AddDays(1 + days);
                 }
                 catch (FormatException)

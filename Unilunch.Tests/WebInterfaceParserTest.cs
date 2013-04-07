@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region using directives
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnilunchService;
+
+#endregion
 
 namespace Unilunch.Tests
 {
@@ -46,6 +50,7 @@ namespace Unilunch.Tests
             Assert.AreEqual(new DateTime(2013, 4, 23), range.Start);
             Assert.AreEqual(new DateTime(2013, 5, 1), range.End);
         }
+
         [TestMethod]
         public void MalformedFirstDateInRangeReturnsToday()
         {
@@ -53,6 +58,7 @@ namespace Unilunch.Tests
             Assert.AreEqual(DateTime.Today, range.Start);
             Assert.AreEqual(DateTime.Today.AddDays(1), range.End);
         }
+
         [TestMethod]
         public void MalformedSecondDateInRangeReturnsToday()
         {
@@ -60,7 +66,7 @@ namespace Unilunch.Tests
             Assert.AreEqual(DateTime.Today, range.Start);
             Assert.AreEqual(DateTime.Today.AddDays(1), range.End);
         }
-     
+
         [TestMethod]
         public void PlusOneReturnsDateRangeForOneDay()
         {
@@ -92,6 +98,5 @@ namespace Unilunch.Tests
             Assert.AreEqual(new DateTime(2013, 4, 23), range.Start);
             Assert.AreEqual(new DateTime(2013, 4, 24), range.End);
         }
-
     }
 }

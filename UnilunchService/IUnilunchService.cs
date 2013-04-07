@@ -1,6 +1,10 @@
-﻿using System.IO;
+﻿#region using directives
+
+using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Web;
+
+#endregion
 
 namespace UnilunchService
 {
@@ -30,6 +34,5 @@ namespace UnilunchService
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "restaurantsAll")]
         Stream AllData();
-
     }
 }

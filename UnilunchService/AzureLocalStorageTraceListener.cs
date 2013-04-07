@@ -1,7 +1,11 @@
+#region using directives
+
 using System.Diagnostics;
 using System.IO;
 using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
+
+#endregion
 
 namespace UnilunchService
 {
@@ -16,7 +20,8 @@ namespace UnilunchService
 
         private static DirectoryConfiguration LogDirectory
         {
-            get {
+            get
+            {
                 var directory = new DirectoryConfiguration
                     {
                         Container = "wad-tracefiles",

@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿#region using directives
+
+using System.Linq;
+
+#endregion
 
 namespace UnilunchData
 {

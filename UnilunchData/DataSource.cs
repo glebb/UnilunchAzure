@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region using directives
+
+using System;
 using System.Net;
 using System.Text;
+
+#endregion
 
 namespace UnilunchData
 {

@@ -1,4 +1,8 @@
+#region using directives
+
 using Microsoft.WindowsAzure.ServiceRuntime;
+
+#endregion
 
 namespace UnilunchService
 {
@@ -19,6 +23,7 @@ namespace UnilunchService
 
             return base.OnStart();
         }
+
 // ReSharper restore RedundantOverridenMember
     }
 }

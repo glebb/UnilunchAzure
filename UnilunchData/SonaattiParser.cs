@@ -1,9 +1,13 @@
-﻿using CsQuery;
+﻿#region using directives
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
+using CsQuery;
+
+#endregion
 
 namespace UnilunchData
 {
@@ -15,10 +19,10 @@ namespace UnilunchData
             {
                 throw new ArgumentNullException("dom");
             }
-            
+
             var menus = new List<MenuDate>();
             HandleFirstDay(menus, dom);
-            
+
             var allNormalDays = dom.Select("#lista > .pari, .odd").Select(".downcont");
             menus.AddRange(allNormalDays.Select(CreateSingleDayMenu));
 
@@ -47,10 +51,15 @@ namespace UnilunchData
 
         private static void PricesForFirstDate(CQ dom, MenuDate menuDate)
         {
-            var prices = dom.Select("#lista > .listapaikka > .hinnat").Html().Split(new[] { "<br>" }, StringSplitOptions.None).Where(s => !String.IsNullOrWhiteSpace(s)).ToList();
+            var prices =
+                dom.Select("#lista > .listapaikka > .hinnat")
+                   .Html()
+                   .Split(new[] {"<br>"}, StringSplitOptions.None)
+                   .Where(s => !String.IsNullOrWhiteSpace(s))
+                   .ToList();
             if (prices.Count() == menuDate.foods.Count())
             {
-                for (int i = 0; i < menuDate.foods.Count(); i++)
+                for (var i = 0; i < menuDate.foods.Count(); i++)
                 {
                     SetPrices(prices[i], menuDate.foods[i]);
                 }
@@ -77,7 +86,7 @@ namespace UnilunchData
             var date = new MenuDate();
             date.SetRealDate(ConstructDateFromSonaattiDate(singleDayTexts.Cq().Find("span.paiva").Text()));
 
-            var rawMenuTextAllItems = singleDayTexts.Cq().Find("p").Text().Split(new[] { ")," }, StringSplitOptions.None);
+            var rawMenuTextAllItems = singleDayTexts.Cq().Find("p").Text().Split(new[] {"),"}, StringSplitOptions.None);
             foreach (var rawMenuItem in rawMenuTextAllItems)
             {
                 var menuItem = new RestaurantMenuItem {description = CleanDescriptionFromPrice(rawMenuItem)};
@@ -108,7 +117,7 @@ namespace UnilunchData
         public static string CleanDescriptionFromPrice(string description)
         {
             var temp = WebUtility.HtmlDecode(description);
-            temp = temp.Split(new[] { "#" }, StringSplitOptions.None).First().Trim();
+            temp = temp.Split(new[] {"#"}, StringSplitOptions.None).First().Trim();
             const string pattern = @"\([0-9]+,[0-9]{1,2}.*$";
             return Regex.Replace(temp, pattern, "").Replace("()", "").Trim();
         }
@@ -129,14 +138,13 @@ namespace UnilunchData
             }
 
             int day, month, year;
-            if (!Int32.TryParse(dates[0], out day) || !Int32.TryParse(dates[1], out month) || !Int32.TryParse(dates[2], out year))
+            if (!Int32.TryParse(dates[0], out day) || !Int32.TryParse(dates[1], out month) ||
+                !Int32.TryParse(dates[2], out year))
             {
                 throw new ArgumentException("Parameter does not contain integer values", temp);
             }
 
             return new DateTime(year, month, day);
-
         }
-
     }
 }
