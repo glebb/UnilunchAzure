@@ -49,7 +49,7 @@ namespace UnilunchService
             {
                 var result = context.MenuDates
                                     .Where(d => d.RealDate >= dateRange.Start && d.RealDate < dateRange.End)
-                                    .Select(d => d.RestaurantDetail)
+                                    .Select(d => d.RestaurantDetail).Distinct()
                                     .Select(r => new
                                         {
                                             RestauraurantDetail = r,

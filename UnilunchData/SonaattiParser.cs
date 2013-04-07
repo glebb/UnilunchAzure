@@ -106,7 +106,7 @@ namespace UnilunchData
             return (from object match in matches select match.ToString().Replace("#", "").Trim()).ToList();
         }
 
-        private static void SetPrices(string rawMenuItem, RestaurantMenuItem menuItem)
+        public static void SetPrices(string rawMenuItem, RestaurantMenuItem menuItem)
         {
             var temp = WebUtility.HtmlDecode(rawMenuItem);
             const string pattern = "[0-9]+,[0-9]{1,2}";
