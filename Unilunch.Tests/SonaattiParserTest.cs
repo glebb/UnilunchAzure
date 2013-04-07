@@ -95,9 +95,25 @@ namespace Unilunch.Tests
             Assert.AreEqual("Test", description);
         }
 
+
+        [TestMethod]
+        public void ItExcluesPricesWhenThereAreNoDiets()
+        {
+            var description = SonaattiParser.CleanDescriptionFromPrice("Test (6,00 € / 12,00 €)");
+            Assert.AreEqual("Test", description);
+        }
+
+        [TestMethod]
+        public void ItExcludesJustBrackets()
+        {
+            var description = SonaattiParser.CleanDescriptionFromPrice("Test ()");
+            Assert.AreEqual("Test", description);
+        }
+
         #endregion
 
         #region Diets
+
         [TestMethod]
         public void ItFindsDiets()
         {
@@ -126,6 +142,7 @@ namespace Unilunch.Tests
         #endregion
 
         #region SetPrices
+
         [TestMethod]
         public void ItSetsBothPricesFromOnePrice()
         {
@@ -153,6 +170,7 @@ namespace Unilunch.Tests
             Assert.AreEqual("12,00", menuItem.staff_prize);
         }
 
+        [TestMethod]
         public void ItFindsBothPricesWithoutBrackets()
         {
             var menuItem = new RestaurantMenuItem();
@@ -161,6 +179,7 @@ namespace Unilunch.Tests
             Assert.AreEqual("12,00", menuItem.staff_prize);
         }
 
+        [TestMethod]
         public void ItFindsBothPricesWithSpaceBeforeEuroSign()
         {
             var menuItem = new RestaurantMenuItem();
