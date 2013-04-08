@@ -1,6 +1,7 @@
 ﻿#region using directives
 
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.IO;
@@ -40,30 +41,47 @@ namespace UnilunchService
             return CreateJsonResponse(res);
         }
 
-        public Stream FetchData(string date)
+        public Stream FetchData(string date, string name, string id)
         {
             var dateRange = WebInterfaceParser.ResolveDateRange(date);
             var container = new RestaurantJsonContainer();
             string res;
             using (var context = new UnilunchContext())
             {
-                var result = context.MenuDates
-                                    .Where(d => d.RealDate >= dateRange.Start && d.RealDate < dateRange.End)
-                                    .Select(d => d.RestaurantDetail).Distinct()
-                                    .Select(r => new
-                                        {
-                                            RestauraurantDetail = r,
-                                            dates =
-                                                     r.dates.Where(
-                                                         d =>
-                                                         d.RealDate >= dateRange.Start
-                                                         && d.RealDate < dateRange.End)
-                                        })
-                                    .ToList();
-                container.restaurant.AddRange(result.Select(a => a.RestauraurantDetail).ToList());
+                var result = RestaurantsQuery(name, id, context, dateRange);
+                container.restaurant.AddRange(result);
                 res = JsonConvert.SerializeObject(container);
             }
             return CreateJsonResponse(res);
+        }
+
+        private static IEnumerable<RestaurantDetail> RestaurantsQuery(string name, string id, UnilunchContext context, DateRange dateRange)
+        {
+            var temp = context.MenuDates
+                                .Where(d => d.RealDate >= dateRange.Start && d.RealDate < dateRange.End)
+                                .Select(d => d.RestaurantDetail).Distinct()
+                                .Select(r => new
+                                    {
+                                        RestauraurantDetail = r,
+                                        dates =
+                                                 r.dates.Where(
+                                                     d =>
+                                                     d.RealDate >= dateRange.Start
+                                                     && d.RealDate < dateRange.End)
+                                    })
+                                .ToList();
+            if (!String.IsNullOrEmpty(name))
+            {
+                temp = temp.Where(r => r.RestauraurantDetail.name == name).ToList();
+            }
+            
+            int tempId;
+            if (Int32.TryParse(id, out tempId))
+            {
+                temp = temp.Where(r => r.RestauraurantDetail.RestaurantDetailId == tempId).ToList();
+            }
+
+            return temp.Select(a => a.RestauraurantDetail).ToList();
         }
 
         private static Stream CreateJsonResponse(string res)

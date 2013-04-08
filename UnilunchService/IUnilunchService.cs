@@ -16,8 +16,8 @@ namespace UnilunchService
             ResponseFormat = WebMessageFormat.Json,
             RequestFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "restaurants?date={date}")]
-        Stream FetchData(string date);
+            UriTemplate = "restaurants?date={date}&name={name}&id={id}")]
+        Stream FetchData(string date, string name, string id);
 
         [OperationContract]
         [WebInvoke(Method = "GET",
