@@ -1,11 +1,9 @@
 ﻿#region using directives
 
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.ServiceModel.Web;
 using System.Text;
 using Newtonsoft.Json;
@@ -48,48 +46,11 @@ namespace UnilunchService
             string res;
             using (var context = new UnilunchContext())
             {
-                var result = RestaurantsQuery(name, id, context, dateRange);
+                var result = DbHandler.RestaurantsQuery(name, id, context, dateRange);
                 container.restaurant.AddRange(result);
                 res = JsonConvert.SerializeObject(container);
             }
             return CreateJsonResponse(res);
-        }
-
-        private static IEnumerable<RestaurantDetail> RestaurantsQuery(string name, string id, UnilunchContext context, DateRange dateRange)
-        {
-            var temp = context.MenuDates
-                                .Where(d => d.RealDate >= dateRange.Start && d.RealDate < dateRange.End)
-                                .Select(d => d.RestaurantDetail).Distinct()
-                                .Select(r => new
-                                    {
-                                        RestauraurantDetail = r,
-                                        dates =
-                                                 r.dates.Where(
-                                                     d =>
-                                                     d.RealDate >= dateRange.Start
-                                                     && d.RealDate < dateRange.End)
-                                    })
-                                .ToList();
-            if (!String.IsNullOrEmpty(name))
-            {
-                temp = temp.Where(r => r.RestauraurantDetail.name == name).ToList();
-            }
-            
-            int tempId;
-            if (Int32.TryParse(id, out tempId))
-            {
-                temp = temp.Where(r => r.RestauraurantDetail.RestaurantDetailId == tempId).ToList();
-            }
-
-            return temp.Select(a => a.RestauraurantDetail).ToList();
-        }
-
-        private static Stream CreateJsonResponse(string res)
-        {
-            Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
-            WebOperationContext.Current.OutgoingResponse.ContentType =
-                "application/json; charset=utf-8";
-            return new MemoryStream(Encoding.UTF8.GetBytes(res));
         }
 
         public Stream AllData()
@@ -103,5 +64,14 @@ namespace UnilunchService
             }
             return CreateJsonResponse(res);
         }
+
+        private static Stream CreateJsonResponse(string res)
+        {
+            Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
+            WebOperationContext.Current.OutgoingResponse.ContentType =
+                "application/json; charset=utf-8";
+            return new MemoryStream(Encoding.UTF8.GetBytes(res));
+        }
+
     }
 }

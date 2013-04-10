@@ -2,17 +2,12 @@
 
 using System;
 using System.Globalization;
+using UnilunchData;
 
 #endregion
 
 namespace UnilunchService
 {
-    public class DateRange
-    {
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
-    }
-
     public static class WebInterfaceParser
     {
         public static DateRange ResolveDateRange(string value)

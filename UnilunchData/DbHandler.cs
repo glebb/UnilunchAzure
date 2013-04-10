@@ -1,5 +1,7 @@
 ﻿#region using directives
 
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 #endregion
@@ -35,6 +37,33 @@ namespace UnilunchData
         private static bool RestaurantExists(UnilunchContext context, RestaurantDetail r)
         {
             return context.Restaurants.Any(e => e.name == r.name);
+        }
+
+        public static IEnumerable<RestaurantDetail> RestaurantsQuery(string name, string id, UnilunchContext context,
+                                                                      DateRange dateRange)
+        {
+            var temp = context.MenuDates.Where(d => d.RealDate >= dateRange.Start && d.RealDate < dateRange.End)
+                                .Select(d => d.RestaurantDetail).Distinct().Select(r => new
+                                    {
+                                        RestauraurantDetail = r,
+                                        dates =
+                                                                                          r.dates.Where(d =>
+                                                                                                       d.RealDate >= dateRange.Start
+                                                                                                       && d.RealDate < dateRange.End)
+                                    })
+                              .ToList();
+            if (!String.IsNullOrEmpty(name))
+            {
+                temp = temp.Where(r => r.RestauraurantDetail.name == name).ToList();
+            }
+
+            int tempId;
+            if (Int32.TryParse(id, out tempId))
+            {
+                temp = temp.Where(r => r.RestauraurantDetail.RestaurantDetailId == tempId).ToList();
+            }
+
+            return temp.Select(a => a.RestauraurantDetail).ToList();
         }
     }
 }
