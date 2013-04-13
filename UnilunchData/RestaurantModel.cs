@@ -22,7 +22,7 @@ namespace UnilunchData
     /// <summary>
     ///     Container object for Unilunch restaurant data.
     ///     Using the object to JSON serialization
-    ///     (with JavascriptSeralizer or JSON.net serializer) produces an object conforming
+    ///     (with JSON.net serializer) produces an object conforming
     ///     (but not limited to) spec at:
     ///     https://trac.cc.jyu.fi/projects/dotnet/wiki/moba/s2012/specs
     /// </summary>
@@ -44,6 +44,17 @@ namespace UnilunchData
             address = new Address();
             contact = new Contact();
             dates = new List<MenuDate>();
+
+            weekDays = new Dictionary<DayOfWeek, int>
+                {
+                {DayOfWeek.Monday, 0},
+                {DayOfWeek.Tuesday, 1},
+                {DayOfWeek.Wednesday, 2},
+                {DayOfWeek.Thursday, 3},
+                {DayOfWeek.Friday, 4},
+                {DayOfWeek.Saturday, 5},
+                {DayOfWeek.Sunday, 6}
+            };
         }
 
         [JsonIgnore]
@@ -62,6 +73,10 @@ namespace UnilunchData
         public Contact contact { get; set; }
         public List<MenuDate> dates { get; private set; }
         public string category { get; set; }
+
+        [JsonIgnore]
+        [NotMapped]
+        public static Dictionary<DayOfWeek, int> weekDays;
     }
 
     [ComplexType]
@@ -96,6 +111,7 @@ namespace UnilunchData
     [ComplexType]
     public class OpenHours
     {
+
         [JsonIgnore]
         public DateTime? RealStart { get; set; }
         [JsonIgnore]
@@ -107,7 +123,7 @@ namespace UnilunchData
             get
             {
                 if (RealStart == null) return "";
-                return RealStart.Value.ToString("hh:mm");
+                return RealStart.Value.ToString("HH:mm");
             }
         }
 
@@ -117,20 +133,15 @@ namespace UnilunchData
             get
             {
                 if (RealEnd == null) return "";
-                return RealEnd.Value.ToString("hh:mm");
+                return RealEnd.Value.ToString("HH:mm");
             }
         }
-
-        [JsonIgnore]
-        public int OpenHoursId { get; set; }
     }
 
     [ComplexType]
     public class LunchHours
     {
         [JsonIgnore]
-        public int LunchHoursId { get; set; }
-        [JsonIgnore]
         public DateTime? RealStart { get; set; }
         [JsonIgnore]
         public DateTime? RealEnd { get; set; }
@@ -140,7 +151,7 @@ namespace UnilunchData
             get
             {
                 if (RealStart == null) return "";
-                return RealStart.Value.ToString("hh:mm");
+                return RealStart.Value.ToString("HH:mm");
             }
         }
 
@@ -150,7 +161,7 @@ namespace UnilunchData
             get
             {
                 if (RealEnd == null) return "";
-                return RealEnd.Value.ToString("hh:mm");
+                return RealEnd.Value.ToString("HH:mm");
             }
         }
     }
@@ -170,7 +181,7 @@ namespace UnilunchData
         public string staff_prize { get; set; }
 
         [DataMember(Order = 4)]
-        public List<string> diets { get; private set; }
+        public virtual List<string> diets { get; private set; }
 
         public RestaurantMenuItem()
         {

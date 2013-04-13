@@ -35,7 +35,8 @@ namespace UnilunchData
             try
             {
                 var date = dom.Select("#lista > .paivanlounas > span.paiva").Text().Split(' ').Last();
-                menuDate.SetRealDate(ConstructDateFromSonaattiDate(WebUtility.HtmlDecode(date)));
+                var realDate = ConstructDateFromSonaattiDate(WebUtility.HtmlDecode(date));
+                menuDate.SetRealDate(realDate);
             }
             catch (ArgumentException)
             {
