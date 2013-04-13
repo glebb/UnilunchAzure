@@ -75,30 +75,30 @@ namespace UnilunchData
                              "");
         }
 
-        private void CreateRestaurant(string restaurantName, string latitude, string longitude, 
-            string website, string address, string phone, string email,
-            string openHours, string lunchHours)
+        private void CreateRestaurant(string restaurantName, string latitude, string longitude,
+                                      string website, string address, string phone, string email,
+                                      string openHours, string lunchHours)
         {
             var restaurant = new RestaurantDetail
-            {
-                name = restaurantName,
-                company = "Sonaatti",
-                category = "Jyväskylä",
-                location = { latitude = latitude, longitude = longitude },
-                contact =
                 {
-                    website = website,
-                    email = email,
-                    phone_number = phone
-                },
-                address =
-                {
-                    street_address = address.Split(';')[0],
-                    postal_code = address.Split(';')[1],
-                    city = address.Split(';')[2]
-                },
-            };
-            
+                    name = restaurantName,
+                    company = "Sonaatti",
+                    category = "Jyväskylä",
+                    location = {latitude = latitude, longitude = longitude},
+                    contact =
+                        {
+                            website = website,
+                            email = email,
+                            phone_number = phone
+                        },
+                    address =
+                        {
+                            street_address = address.Split(';')[0],
+                            postal_code = address.Split(';')[1],
+                            city = address.Split(';')[2]
+                        },
+                };
+
             LoadMenu(restaurant);
             foreach (var date in restaurant.dates)
             {
@@ -115,10 +115,12 @@ namespace UnilunchData
             {
                 var temp = lunchHours.Split(';')[numberOfDay].Split('-')[0];
                 date.lunch_hours.RealStart = new DateTime(date.RealDate.Year, date.RealDate.Month, date.RealDate.Day,
-                                                          Int32.Parse(temp.Split('.')[0]), Int32.Parse(temp.Split('.')[1]), 0);
+                                                          Int32.Parse(temp.Split('.')[0]),
+                                                          Int32.Parse(temp.Split('.')[1]), 0);
                 temp = lunchHours.Split(';')[RestaurantDetail.weekDays[date.RealDate.DayOfWeek]].Split('-')[1];
                 date.lunch_hours.RealEnd = new DateTime(date.RealDate.Year, date.RealDate.Month, date.RealDate.Day,
-                                                        Int32.Parse(temp.Split('.')[0]), Int32.Parse(temp.Split('.')[1]), 0);
+                                                        Int32.Parse(temp.Split('.')[0]), Int32.Parse(temp.Split('.')[1]),
+                                                        0);
             }
         }
 
@@ -128,10 +130,12 @@ namespace UnilunchData
             {
                 var temp = openHours.Split(';')[numberOfDay].Split('-')[0];
                 date.open_hours.RealStart = new DateTime(date.RealDate.Year, date.RealDate.Month, date.RealDate.Day,
-                                                         Int32.Parse(temp.Split('.')[0]), Int32.Parse(temp.Split('.')[1]), 0);
+                                                         Int32.Parse(temp.Split('.')[0]),
+                                                         Int32.Parse(temp.Split('.')[1]), 0);
                 temp = openHours.Split(';')[RestaurantDetail.weekDays[date.RealDate.DayOfWeek]].Split('-')[1];
                 date.open_hours.RealEnd = new DateTime(date.RealDate.Year, date.RealDate.Month, date.RealDate.Day,
-                                                       Int32.Parse(temp.Split('.')[0]), Int32.Parse(temp.Split('.')[1]), 0);
+                                                       Int32.Parse(temp.Split('.')[0]), Int32.Parse(temp.Split('.')[1]),
+                                                       0);
             }
         }
 

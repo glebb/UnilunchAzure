@@ -40,17 +40,20 @@ namespace UnilunchData
         }
 
         public static IEnumerable<RestaurantDetail> RestaurantsQuery(string name, string id, UnilunchContext context,
-                                                                      DateRange dateRange)
+                                                                     DateRange dateRange)
         {
             var temp = context.MenuDates.Where(d => d.RealDate >= dateRange.Start && d.RealDate < dateRange.End)
-                                .Select(d => d.RestaurantDetail).Distinct().Select(r => new
-                                    {
-                                        RestauraurantDetail = r,
-                                        dates =
+                              .Select(d => d.RestaurantDetail).Distinct().Select(r => new
+                                  {
+                                      RestauraurantDetail = r,
+                                      dates =
                                                                                           r.dates.Where(d =>
-                                                                                                       d.RealDate >= dateRange.Start
-                                                                                                       && d.RealDate < dateRange.End)
-                                    })
+                                                                                                        d.RealDate >=
+                                                                                                        dateRange.Start
+                                                                                                        &&
+                                                                                                        d.RealDate <
+                                                                                                        dateRange.End)
+                                  })
                               .ToList();
             if (!String.IsNullOrEmpty(name))
             {

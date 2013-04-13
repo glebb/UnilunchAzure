@@ -171,6 +171,5 @@ namespace Unilunch.Tests
         {
             Assert.AreEqual("L", SonaattiParser.Diets("Kalkkuna-rakuunakastiketta ja tummaa riisiä #L #G")[0]);
         }
-
     }
 }

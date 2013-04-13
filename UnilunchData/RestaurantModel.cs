@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
@@ -47,14 +48,14 @@ namespace UnilunchData
 
             weekDays = new Dictionary<DayOfWeek, int>
                 {
-                {DayOfWeek.Monday, 0},
-                {DayOfWeek.Tuesday, 1},
-                {DayOfWeek.Wednesday, 2},
-                {DayOfWeek.Thursday, 3},
-                {DayOfWeek.Friday, 4},
-                {DayOfWeek.Saturday, 5},
-                {DayOfWeek.Sunday, 6}
-            };
+                    {DayOfWeek.Monday, 0},
+                    {DayOfWeek.Tuesday, 1},
+                    {DayOfWeek.Wednesday, 2},
+                    {DayOfWeek.Thursday, 3},
+                    {DayOfWeek.Friday, 4},
+                    {DayOfWeek.Saturday, 5},
+                    {DayOfWeek.Sunday, 6}
+                };
         }
 
         [JsonIgnore]
@@ -74,9 +75,7 @@ namespace UnilunchData
         public List<MenuDate> dates { get; private set; }
         public string category { get; set; }
 
-        [JsonIgnore]
-        [NotMapped]
-        public static Dictionary<DayOfWeek, int> weekDays;
+        [JsonIgnore] [NotMapped] public static Dictionary<DayOfWeek, int> weekDays;
     }
 
     [ComplexType]
@@ -111,9 +110,9 @@ namespace UnilunchData
     [ComplexType]
     public class OpenHours
     {
-
         [JsonIgnore]
         public DateTime? RealStart { get; set; }
+
         [JsonIgnore]
         public DateTime? RealEnd { get; set; }
 
@@ -143,8 +142,10 @@ namespace UnilunchData
     {
         [JsonIgnore]
         public DateTime? RealStart { get; set; }
+
         [JsonIgnore]
         public DateTime? RealEnd { get; set; }
+
         [NotMapped]
         public string start_time
         {
@@ -181,7 +182,20 @@ namespace UnilunchData
         public string staff_prize { get; set; }
 
         [DataMember(Order = 4)]
-        public virtual List<string> diets { get; private set; }
+        [JsonIgnore]
+        public string DietsSer
+        {
+            get
+            {
+                return String.Join(";", diets);
+            }
+            set
+            {
+                diets = value.Split(';').ToList();
+            }
+        }
+        
+        public virtual List<String> diets { get; private set; }
 
         public RestaurantMenuItem()
         {
@@ -192,6 +206,7 @@ namespace UnilunchData
 
         [JsonIgnore]
         public int MenuDateId { get; set; }
+
         [JsonIgnore]
         public virtual MenuDate MenuDate { get; set; }
     }
@@ -200,8 +215,10 @@ namespace UnilunchData
     {
         [JsonIgnore]
         public int MenuDateId { get; set; }
+
         [JsonIgnore]
         public DateTime RealDate { get; set; }
+
         public MenuDate()
         {
             open_hours = new OpenHours();

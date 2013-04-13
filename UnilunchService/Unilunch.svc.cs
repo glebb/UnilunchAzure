@@ -72,6 +72,5 @@ namespace UnilunchService
                 "application/json; charset=utf-8";
             return new MemoryStream(Encoding.UTF8.GetBytes(res));
         }
-
     }
 }
