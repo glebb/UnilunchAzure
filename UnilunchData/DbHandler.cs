@@ -10,7 +10,7 @@ namespace UnilunchData
 {
     public static class DbHandler
     {
-        public static void SaveToDb(IEnumerable<RestaurantDetail> restaurants , UnilunchContext context)
+        public static void SaveToDb(IList<RestaurantDetail> restaurants , UnilunchContext context)
         {
             foreach (var r in restaurants)
             {
@@ -43,7 +43,7 @@ namespace UnilunchData
             return context.Restaurants.Any(e => e.name == r.name);
         }
 
-        public static IEnumerable<RestaurantDetail> RestaurantsQuery(string name, string id, UnilunchContext context,
+        public static IList<RestaurantDetail> RestaurantsQuery(string name, string id, UnilunchContext context,
                                                                      DateRange dateRange)
         {
             var temp = context.MenuDates.Where(d => d.RealDate >= dateRange.Start && d.RealDate < dateRange.End)
