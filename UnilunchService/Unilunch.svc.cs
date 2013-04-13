@@ -34,7 +34,7 @@ namespace UnilunchService
             Database.SetInitializer(new DropCreateDatabaseAlways<UnilunchContext>());
 
             using (var context = new UnilunchContext())
-                DbHandler.SaveToDb(_sonaatti, context);
+                DbHandler.SaveToDb(_sonaatti.Restaurants, context);
             var res = JsonConvert.SerializeObject("OK");
             return CreateJsonResponse(res);
         }
