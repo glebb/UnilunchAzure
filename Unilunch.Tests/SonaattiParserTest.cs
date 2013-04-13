@@ -110,6 +110,20 @@ namespace Unilunch.Tests
             Assert.AreEqual("Test", description);
         }
 
+        [TestMethod]
+        public void ItShouldStripExtraParenthesisFromDescription()
+        {
+            Assert.AreEqual("salaatti", SonaattiParser.CleanDescriptionFromPrice("salaatti ()"));
+        }
+
+        [TestMethod]
+        public void ItShouldKeepSpecialCharInTheEbd()
+        {
+            Assert.AreEqual("Kalkkuna-rakuunakastiketta ja tummaa riisiä",
+                            SonaattiParser.CleanDescriptionFromPrice(
+                                "Kalkkuna-rakuunakastiketta ja tummaa riisi&#228; #L #G"));
+        }
+
         #endregion
 
         #region Diets
@@ -137,6 +151,12 @@ namespace Unilunch.Tests
             Assert.AreEqual(2, diets.Count);
             Assert.AreEqual("GL", diets[0]);
             Assert.AreEqual("V", diets[1]);
+        }
+
+        [TestMethod]
+        public void ItShouldWorkOnThisSpecialCase()
+        {
+            Assert.AreEqual("L", SonaattiParser.Diets("Kalkkuna-rakuunakastiketta ja tummaa riisiä #L #G")[0]);
         }
 
         #endregion
