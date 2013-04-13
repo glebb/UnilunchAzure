@@ -2,7 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Diagnostics;
+using System.Linq;
 using System.Web.Script.Serialization;
+using Effort.DataLoaders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnilunchData;
 
@@ -64,8 +68,7 @@ namespace Unilunch.Tests
         [TestMethod]
         public void DietSerialization()
         {
-            var menuItem = new RestaurantMenuItem();
-            menuItem.DietsSer = "L;G";
+            var menuItem = new RestaurantMenuItem {DietsSer = "L;G"};
             Assert.AreEqual("G", menuItem.diets[1]);
         }
 
@@ -80,6 +83,41 @@ namespace Unilunch.Tests
             Assert.AreEqual("L;G", menuItem.DietsSer);
         }
 
+        [TestMethod]
+        public void SaveToDb()
+        {
+            IDataLoader loader = new CsvDataLoader("./");
+            DbConnection connection = Effort.DbConnectionFactory.CreateTransient(loader);
+            using (var ctx = new UnilunchContext(connection))
+            {
+                var restaurants = ctx.Restaurants.ToList();
+                restaurants.Add(new RestaurantDetail
+                    {
+                        name = "Testi Ravintola"
+                    });
+                DbHandler.SaveToDb(restaurants, ctx);
+                Debug.Assert(ctx.Restaurants != null, "ctx.Restaurants != null");
+                Assert.AreEqual("Testi Ravintola", actual: ctx.Restaurants.FirstOrDefault(r=>r.name == "Testi Ravintola").name);
+            }
+        }
+
+        [TestMethod]
+        public void GetRestaurants()
+        {
+            IDataLoader loader = new CsvDataLoader("./");
+            DbConnection connection = Effort.DbConnectionFactory.CreateTransient(loader);
+            using (var ctx = new UnilunchContext(connection))
+            {
+                var restaurants = DbHandler.RestaurantsQuery("Piato", null, ctx, new DateRange
+                    {
+                        Start = new DateTime(2013,4,15),
+                        End = new DateTime(2013,4,16)
+                    });
+                Assert.AreEqual(1, restaurants.Count);
+                Assert.AreEqual("Piato", restaurants[0].name);
+                Assert.AreEqual(1, restaurants[0].dates.Count);
+            }
+        }
 
     }
 }

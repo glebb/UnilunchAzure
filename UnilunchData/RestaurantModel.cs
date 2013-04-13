@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
@@ -257,6 +258,15 @@ namespace UnilunchData
 
     public class UnilunchContext : DbContext
     {
+        public UnilunchContext()
+        {
+            
+        }
+
+        public UnilunchContext(DbConnection connection) : base(connection, true)
+        {
+        }
+
         public DbSet<RestaurantDetail> Restaurants { get; set; }
         public DbSet<RestaurantMenuItem> Menus { get; set; }
         public DbSet<MenuDate> MenuDates { get; set; }

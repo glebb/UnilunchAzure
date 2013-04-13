@@ -1,0 +1,12 @@
+RestaurantDetailId,name,company,location_longitude,location_latitude,address_street_address,address_postal_code,address_city,contact_phone_number,contact_email,contact_website,category
+1,"Piato","Sonaatti","25.736421","62.232037","Mattilanniemi 2 (Agora)","40100","Jyväskylä","040 805 4016","piato@sonaatti.fi","http://www.sonaatti.fi/piato","Jyväskylä"
+2,"Kvarkki","Sonaatti","25.741338","62.230115","Survontie 9 (YK-rak.)","40500","Jyväskylä","040 805 4005","ylisto@sonaatti.fi","http://www.sonaatti.fi/kvarkki","Jyväskylä"
+3,"Cafe Libri","Sonaatti","25.736614","62.237685","Seminaarinkatu 15 (B-rak)","40100","Jyväskylä","040 805 4008","cafelibri@sonaatti.fi","http://www.sonaatti.fi/cafe-libri","Jyväskylä"
+4,"Lozzi","Sonaatti","25.730384","62.235411","Keskussairaalantie 2","40600","Jyväskylä","040 8054012","lozzi@sonaatti.fi","http://www.sonaatti.fi/lozzi","Jyväskylä"
+5,"Musica","Sonaatti","25.734508","62.238292","Seminaarinkatu 15 (M-rak.)","40100","Jyväskylä","040 805 4009","musica@sonaatti.fi","http://www.sonaatti.fi/musica","Jyväskylä"
+6,"Syke","Sonaatti","25.729208","62.234724","Keskussairaalantie 4 L-rak.","40600","Jyväskylä","040 805 4018","syke@sonaatti.fi","http://www.sonaatti.fi/syke","Jyväskylä"
+7,"Wilhelmiina","Sonaatti","25.733803","62.23104","Ahlmaninkatu 2 (MaA-rak.)","40100","Jyväskylä","040 805 4014","wilhelmiina@sonaatti.fi","http://www.sonaatti.fi/wilhelmiina","Jyväskylä"
+8,"Hestia","Sonaatti","25.744484","62.226731","Ylistönmäentie 33","40500","Jyväskylä","040 805 4019","hestia@sonaatti.fi","http://www.sonaatti.fi/hestia","Jyväskylä"
+9,"Ylistö","Sonaatti","25.741338","62.230115","Survontie 9 (YFL-rak.)","40500","Jyväskylä"," 040 805 4004","ylisto@sonaatti.fi","http://www.sonaatti.fi/ylisto","Jyväskylä"
+10,"Novelli","Sonaatti","25.742791","62.238562","Vapaudenkatu 39-41 (pääkirjasto)","40100","Jyväskylä","014 2660215","novelli@sonaatti.fi","http://www.sonaatti.fi/novelli","Jyväskylä"
+11,"Normaalikoulu","Sonaatti","25.736257","62.239837","Yliopistonkatu 1","40100","Jyväskylä","0400 248145","muonatupa@sonaatti.fi","http://www.sonaatti.fi/normaalikoulu","Jyväskylä"

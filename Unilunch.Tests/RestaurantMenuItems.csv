@@ -1,0 +1,217 @@
+RestaurantMenuItemId,description,student_prize,staff_prize,DietsSer,MenuDateId
+1,"Riisiä, kasviksia ja kebablihaa","2,60","8,00","VH;G;L;M",1
+2,"Jauhelihalasagnettea","2,60","8,00","",1
+3,"Siruunakuorrutettua seitiä","2,60","8,00","VH;L",1
+4,"Quornia tomaatti-kasviskastikkeessa","2,60","8,00","VH;G;L",1
+5,"Parsakaalisosekeittoa","2,60","6,80","VH;G;VL",1
+6,"Ruusunmarjajogurttia","0,80","0,80","G;L",1
+7,"Liha-makaronilaatikkoa","2,60","8,00","VH;VL",2
+8,"Smetanaista naudanlihapataa","2,60","8,00","L",2
+9,"Lohikeittoa","2,60","8,00","G;VL",2
+10,"Kasviskia currykastikkeessa","2,60","8,00","VH;G;L;M",2
+11,"Broileria maissi-kasvispedillä","4,95","9,10","G;L;M",2
+12,"Broileria kasviskastikkeessa","2,60","8,00","VH;L;M",3
+13,"Silakkapihvejä","2,60","8,00","L;M",3
+14,"Lammaskaalikeittoa","2,60","8,00","G;L;M",3
+15,"Juurespihvejä","2,60","8,00","VH;G;L;M",3
+16,"Riistakäristystä","4,95","9,10","VH;G;L;M",3
+17,"Kalkkuna-tomaattikastiketta","2,60","8,00","VH;L;M",4
+18,"Uunimakkara sipuli-juustotäytteellä","2,60","8,00","G;L",4
+19,"Juustokuorrutettua kasvisgratiinia","2,60","8,00","VH;VL",4
+20,"Tomaatti-vuohenjuustokeittoa","2,60","6,80","G",4
+21,"Bolognesekastiketta","2,60","8,00","VH;G;L;M",5
+22,"Rukiisia silakoita","2,60","8,00","VH;VL",5
+23,"Kikherne-bataattipataa","2,60","8,00","VH;G;L;M",5
+24,"Porsaan grillipihvi","4,95","9,10","G;L;M",5
+25,"Makkara-perunapannua","2,60","5,60","G;L;M;VH",6
+26,"Juustoista broileri-paprikakastiketta","2,60","5,60","G;VL;VH",6
+27,"Pähkinäistä kasvis-vehnärisottoa","2,60","5,60","L;M",6
+28,"Juusto-basilikakeittoa","2,50","5,50","G;VL",6
+29,"Miedosti savustettua lohta","4,95","8,60","G;L;M;VH",6
+30,"Mansikkariisiä","0,85","0,85","G;L",6
+31,"Kalaa katkarapukastikeessa","2,60","5,60","VL;VH",7
+32,"Lihakeittoa","2,60","5,60","VH;L;M;G",7
+33,"Raastepihvejä","2,60","5,60","L;M;VH",7
+34,"Papu-kasviskeittoa","2,50","5,50","G",7
+35,"Oskarinleike","4,95","8,60","VL",7
+36,"Lohi-kasvispataa","2,60","5,60","G;VL;VH",8
+37,"Luomutofu-kasviscurrya","2,60","5,60","G;L;M;VEG;VH",8
+38,"Ohrasuurimopuuroa","2,50","5,50","VH",8
+39,"Paistettu broilerinleike","4,95","8,60","L;M",8
+40,"Kinkku-ananaspannupizzaa","2,60","5,60","L",8
+41,"Naudanlihaa smetanakastikkeessa","2,60","5,60","L;VH",9
+42,"Hernekeittoa","2,60","5,60","VH;G;L;M",9
+43,"Soija-makaronilaatikkoa","2,60","5,60","VH",9
+44,"Kasvis-hernekeittoa","2,50","5,50","G;L;M;VEG;VH",9
+45,"Kirjolohisalaattia","2,60","5,60","L;G;VH",9
+46,"Kebab-kasviskastiketta","2,60","5,60","G;L;M;VH",10
+47,"Rapeita kalapaloja","2,60","5,60","L;M;VH",10
+48,"Broileri-juuresvuokaa","2,60","5,60","G;VL",10
+49,"Chili con vege","2,60","5,60","G;L;M;VEG;VH",10
+50,"Makkarakeittoa","5,00","4,80","L",11
+51,"Katkarapusalaatti","5,00","4,80","L;G",11
+52,"Lohikeittoa","5,00","4,80","L",12
+53,"Hedelmäinen juustosalaatti","5,00","4,80","L;G",12
+54,"Kasvisminestronekeittoa","4,50","4,30","L",13
+55,"Kinkkusalaatti","5,00","4,80","L;G",13
+56,"Siika-kasviskeittoa","5,00","4,80","L",14
+57,"Pekonisalaatti","5,00","4,80","L",14
+58,"Meksikolaista papukeittoa","4,50","4,30","L",15
+59,"Lohisalaatti","5,00","4,80","L;G",15
+60,"Siskonmakkarakeittoa","5,00","4,80","L",16
+61,"Juustoslaattia","5,00","4,80","L;G",16
+62,"Kalkkuna-tuorejuustokastiketta","2,60","5,60","VL;VH;G",17
+63,"Jauheliha-perunapannua","2,60","5,60","L;M;G;VH",17
+64,"Makkarakeittoa","2,60","5,60","L;M;G",17
+65,"Kasvis-vehnärisottoa ja luomutofua","2,60","5,60","L;M;VH;VEG",17
+66,"Lohta","4,95","8,60","VL;G",17
+67,"Jauhelihakiusausta","2,60","5,60","G;VH;VL",18
+68,"Broiler-sinihomejuustokastiketta","2,60","5,60","VL;VH",18
+69,"Kalakeittoa","2,60","5,60","VH;G",18
+70,"Soija.-kasvislasagnea","2,60","5,60","VH,",18
+71,"Porsaan ulkofilettä","4,95","8,60","L;M;G;VH",18
+72,"Broilerin koipi","2,60","5,60","L;M;G;VH",19
+73,"Lohilaatikkoa","2,60","5,60","G",19
+74,"Lihakeittoa","2,60","5,60","L;M;G;VH",19
+75,"Uunipaahdettuja kasviksia","2,60","5,60","L;M;G;VH;VEG",19
+76,"Pehmeäksi haudutettua naudanrintaa","4,95","8,60","L;M;G",19
+77,"Jauheliha-perunamusakaa","2,60","5,60","VH",20
+78,"Juustoista tonnikalakastiketta","2,60","5,60","VL;G;VH",20
+79,"Juustoista riistakeittoa","2,60","5,60","VL;VH;G",20
+80,"Meksikolaista maissi-kasvishöystöä","2,60","5,60","L;M;G;VH;VEG",20
+81,"Porsaan lehtipihvi","4,95","8,60","L;M;G",20
+82,"Kalkkunan jauhelihapihvi","2,60","5,60","L;M",21
+83,"Uunikalaa sinappi-purjokastikkeessa","2,60","5,60","VL;G;VH",21
+84,"Lihakeittoa","2,60","5,60","L;M;G;VH",21
+85,"Punajuurikroketteja","2,60","5,60","L;M;G;VH;VEG",21
+86,"Porsaanleike ja ananasta","4,95","8,60","L;M",21
+87,"Jauhelihapyöryköitä","2,60","5,60","L;M;VH",22
+88,"Tomaattista naudanlihapastaa","2,60","5,60","VH;L",22
+89,"Siskonmakkarakeittoa","2,60","5,60","L;M;G",22
+90,"Espanjalaista pinaatti-oliivimunakasta","2,60","5,60","VH;L;G,",22
+91,"Kalkkunaleike","4,95","8,60","L;M",22
+92,"Mantelikalaa","2,60","5,60","L;M",23
+93,"Porsaanliha-inkiväärikastiketta","2,60","5,60","VH;G;L;M",23
+94,"Jogurttista linssi-kasvismuhennosta","2,60","5,60","VH;G",23
+95,"Jauhemaksapihvejä ja sipulikastiketta","2,60","5,60","G;L;M",24
+96,"Kalkkunaa ja vihanneksia kookoskastikkeessa","2,60","5,60","VH;G;L;M",24
+97,"Quornia curry-kasviskastikkeessa","2,60","5,60","G;L;M",24
+98,"Pepperone-pannupitsaa","2,60","5,60","L",25
+99,"Katkarapukastiketta","2,60","5,60","VH;G;VL",25
+100,"Pinaattikastiketta ja  pastaa","2,60","5,60","VL",25
+101,"Lihapyöryköitä tomaattikastikkeessa","2,60","5,60","L;M",26
+102,"Risotto verdeä","2,60","5,60","VH;G;VL",26
+103,"Kalkkuna-ananaspastavuokaa","2,60","5,60","VH;L",27
+104,"Burgundin porsaspataa","2,60","5,60","G;L;M",27
+105,"Porkkanaohukaisia ja puolukkahilloa","2,60","5,60","L",27
+106,"Mantelikalaa","2,60","5,60","L;M",28
+107,"Jogurttista linssi-kasvismuhennosta*","2,60","5,60","G",28
+108,"Makkarakeittoa","2,60","5,60","G;L;M",28
+109,"Jauhemaksapihvejä","2,60","5,60","G;L;M;VL",29
+110,"Kalkkunaa ja vihanneksia kookoskastikkeessa*","2,60","5,60","G;L;M",29
+111,"Quornia curry-kasviskastikkeessa*","2,60","5,60","G;L;M",29
+112,"Pepperonepannupizzaa","2,60","5,60","L",30
+113,"Katkarapukastiketta*","2,60","5,60","G;VL",30
+114,"Pinaattikastiketta","2,60","5,60","VL;L;M",30
+115,"Lihapyöryköitä tomaattikastikkeessa","2,60","5,60","L;M",31
+116,"Risotto Verdeä*","2,60","5,60","G;VL",31
+117,"Kirkasliemistä siika-kasviskeittoa*","2,60","5,60","G;L;M",31
+118,"Kalkkuna-ananaspastavuokaa*","2,60","5,60","L",32
+119,"Burgundin porsaspataa","2,60","5,60","G;L;M",32
+120,"Porkkanaohukaisia ja puolukkahilloa","2,60","5,60","L",32
+121,"Jauhelihakebakoita","2,60","5,60","",33
+122,"Juustoista broileri-paprikakastiketta*","2,60","5,60","",33
+123,"Chili con vegeä*","2,60","5,60","",33
+124,"Siskonmakkarakeittoa","2,60","5,60","",33
+125,"Mantelikalaa","2,60","5,60","L;M;VL",34
+126,"Porsaanliha-inkiväärikastiketta","2,60","5,60","VH;G;L;M",34
+127,"Jogurttista linssi-kasvismuhennosta","2,60","5,60","VH;G",34
+128,"Makkarakeittoa","2,60","5,60","G;L;M",34
+129,"Jauhemaksapihvejä","2,60","5,60","G;L;M",35
+130,"Kalkkunaa ja vihanneksia kookoskastikkeessa","2,60","5,60","VH;G;L;M",35
+131,"Quornia curry-kasviskastikkeessa","2,60","5,60","G;L;M",35
+132,"Lohikeittoa","2,60","5,60","VH;G",35
+133,"Pepperonepannupizzaa","2,60","5,60","L",36
+134,"Kermaista katkarapukastiketta","2,60","5,60","VH;G;VL",36
+135,"Pinaattikastiketta","2,60","5,60","VL",36
+136,"Kasvisminestronea","2,60","5,60","VH;L;M",36
+137,"Lihapyöryköitä tomaattikastikkeessa","2,60","5,60","L;M",37
+138,"Risotto Verde","2,60","5,60","VH;G;VL",37
+139,"Kirkasta siikakeittoa","2,60","5,60","VH;G;L;M",37
+140,"Porsaanpaistia rosmariinikastikkeessa","4,70","8,00","VH;G;L;M",37
+141,"Kalkkuna-pastavuokaa","2,60","5,60","VH;L",38
+142,"Burgundin porsaspataa","2,60","5,60","G;L;M",38
+143,"Porkkanaohukaisia","2,60","5,60","L",38
+144,"Meksikolaista papukeittoa","2,60","5,60","VH;G;L;M",38
+145,"Chili con carnea","2,60","7,50","VH;G;L;M",39
+146,"Juustokuorrutettua seitiä","2,60","7,50","VH;L",39
+147,"Porkkanaohukaisia","2,60","7,50","",39
+148,"Pinaattikeittoa ja kananmunaa","2,60","5,90","L",39
+149,"Raparperipaistosta ja vaniljakastiketta","1,20","1,20","L",39
+150,"Uunimakkaraa juustotäytteellä","2,60","7,50","G;L",40
+151,"Broilerinkoipi sipuli-porkkanapedillä","2,60","7,50","VH;G;L;M",40
+152,"Kasviksia inkiväärikastikkeessa","2,60","7,50","VH;G;L;M",40
+153,"Yrttimaustettua porsaanfileetä","4,95","8,70","G;L;M",40
+154,"Maksastroganoffia","2,60","7,50","VH;VL",41
+155,"Jauhelihapihvi","2,60","7,50","L;M",41
+156,"Kirkasta lohikeittoa","2,60","7,50","G;L;M",41
+157,"Linssi-kaalilaatikkoa","2,60","7,50","VH;G;L;M",41
+158,"Juustokuorrutettua jauheliha-perunavuokaa","2,60","7,50","VH;L",42
+159,"Broileri-tomaattikastiketta","2,60","7,70","VH;L",42
+160,"Herkkusieni-juustopiirakkaa","2,60","7,50","VL",42
+161,"Savustettua lohta","4,95","8,70","G;L;M",42
+162,"Makkara-perunapannua","2,60","5,60","G;L;M;VH",43
+163,"Juustoista broileri-paprikakastiketta","2,60","5,60","G;VL;VH",43
+164,"Pähkinäistä kasvis-vehnärisottoa","2,60","5,60","L;M",43
+165,"Juusto-basilikakeittoa","2,50","5,50","G;VL",43
+166,"Miedosti savustettua lohta","4,95","8,60","G;L;M;VH",43
+167,"Mansikkariisiä","0,85","0,85","G;L",43
+168,"Kalaa katkarapukastikeessa","2,60","5,60","VL;VH",44
+169,"Lihakeittoa","2,60","5,60","VH;L;M;G",44
+170,"Raastepihvejä","2,60","5,60","L;M;VH",44
+171,"Papu-kasviskeittoa","2,50","5,50","G",44
+172,"Oskarinleike","4,95","8,60","VL",44
+173,"Lohi-kasvispataa","2,60","5,60","G;VL;VH",45
+174,"Luomutofu-kasviscurrya","2,60","5,60","G;L;M;VEG;VH",45
+175,"Ohrasuurimopuuroa","2,50","5,50","VH",45
+176,"Paistettu broilerinleike","4,95","8,60","L;M",45
+177,"Kinkku-ananaspannupizzaa","2,60","5,60","L",45
+178,"Naudanlihaa smetanakastikkeessa","2,60","5,60","L;VH",46
+179,"Hernekeittoa","2,60","5,60","VH;G;L;M",46
+180,"Soija-makaronilaatikkoa","2,60","5,60","VH",46
+181,"Kasvis-hernekeittoa","2,50","5,50","G;L;M;VEG;VH",46
+182,"Kirjolohisalaattia","2,60","5,60","L;G;VH",46
+183,"Kebab-kasviskastiketta","2,60","5,60","G;L;M;VH",47
+184,"Rapeita kalapaloja","2,60","5,60","L;M;VH",47
+185,"Broileri-juuresvuokaa","2,60","5,60","G;VL",47
+186,"Chili con vege","2,60","5,60","G;L;M;VEG;VH",47
+187,"Mantelikalaa","7,90","7,90","",48
+188,"Jogurttista linssi-kasvismuhennosta","6,70","6,70","",48
+189,"Makkarakeittoa","6,70","6,70","",48
+190,"Jauhemaksapihvejä ja sipulikastiketta","7,90","7,90","",49
+191,"Quornia curry-kasviskastikeessa","6,70","6,70","",49
+192,"Lohikeittoa","6,70","6,70","",49
+193,"Katkarapukastiketta","7,90","7,90","",50
+194,"Pinaattikastiketta ja pastaa","6,70","6,70","",50
+195,"Kasvisminestronea","6,70","6,70","",50
+196,"Lihapyörykät tomaattikastikkeessa","7,90","7,90","",51
+197,"Risotto Verdeä","6,70","6,70","",51
+198,"Kirkasliemistä siika-kasviskeittoa","6,70","6,70","",51
+199,"Burgundin porsaspataa","7,90","7,90","",52
+200,"Porkkanaohukaisia ja puolukkahilloa","6,70","6,70","",52
+201,"Meksikolaista papukeittoa","6,70","6,70","",52
+202,"Pippurista porsaspataa ja perunoita","","","L",53
+203,"Kasviksia currykastikeessa ja perunoita","","","L",53
+204,"salaatit","","","",53
+205,"Lohi-tomaattikastiketta ja täysjyväpastaa","","","L",54
+206,"Pinaatti-kasvispataa ja jogurttia","","","G;L",54
+207,"salaatit .","","","",54
+208,"Juustoisia broileripuikkoja ja tummaa riisiä","","","L",55
+209,"Bataatti-kikhernepataa","","","M;G;Veg",55
+210,"salaatit .","","","",55
+211,"Hernekeittoa","","","M;G",56
+212,"Kasvishernekeittoa","","","G;M;Veg",56
+213,"Tuorepala .","","","",56
+214,"Bolognesekastiketta ja luomu-spaghettia","","","M",57
+215,"Kasvisbolognesea ja luomu-spaghettia","","","M",57
+216,"salaatit .","","","",57
